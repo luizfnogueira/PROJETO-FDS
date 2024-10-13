@@ -61,4 +61,4 @@ def login(request):
             # Se a autenticação falhar, exibir mensagem de erro
             return render(request, 'html/login.html', {'error': 'Credenciais inválidas!'})
 
-    return render(request, 'html/login.html')
+    return render(request, 'html/login.html') #ola
