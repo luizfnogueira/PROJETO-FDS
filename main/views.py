@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
-from datetime import datetime
-from .models import Perfil  # Importa o modelo Perfil
+from django.db import models
+from .models import Perfil, Hidratacao
+from datetime import date
 
 
 def paginainicial(request):
@@ -12,6 +13,10 @@ def paginainicial(request):
 
 def login(request):
     return render(request, 'html/login.html')
+
+
+def home(request):
+    return render(request, 'html/home.html')  # Renderiza o template home.html
 
 
 def cadastro(request):
@@ -47,18 +52,39 @@ def cadastro(request):
 
 def login(request):
     if request.method == 'POST':
-        # Obter o nome de usuário e a senha do formulário
         username = request.POST['username']
         password = request.POST['password']
 
         # Autenticar o usuário
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            # Se a autenticação for bem-sucedida, fazer login
             auth_login(request, user)
-            return redirect('inicio')  # Redirecionar para a página inicial ou dashboard
+            return redirect('home')  # Redirecionar para a página home após login bem-sucedido
         else:
-            # Se a autenticação falhar, exibir mensagem de erro
             return render(request, 'html/login.html', {'error': 'Credenciais inválidas!'})
 
-    return render(request, 'html/login.html') #ola
+    return render(request, 'html/login.html')
+
+
+def logout(request):
+    auth_logout(request)  # Faz o logout do usuário
+    return redirect('login')  # Redireciona para a página de login após o logout
+
+
+def hidratacao(request):
+    if request.method == 'POST':
+        quantidade_agua = int(request.POST['quantidade_agua'])  # Obtém a quantidade de água do formulário
+        usuario = request.user  # Obtém o usuário logado
+        novo_registro = Hidratacao.objects.create(user=usuario, quantidade_agua=quantidade_agua)
+        novo_registro.save()
+
+    # Calcula o total diário de água
+    total_diario = Hidratacao.objects.filter(user=request.user, data=date.today()).aggregate(models.Sum('quantidade_agua'))['quantidade_agua__sum'] or 0
+
+    return render(request, 'html/hidratacao.html', {'total_diario': total_diario})
+
+
+def historico_hidratacao(request):
+    # Recupera todos os registros de hidratação do usuário logado
+    registros = Hidratacao.objects.filter(user=request.user).order_by('-data')
+    return render(request, 'html/historicohidratacao.html', {'registros': registros})

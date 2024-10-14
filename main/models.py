@@ -8,3 +8,12 @@ class Perfil(models.Model):
 
     def str(self):
         return self.user.username
+
+
+class Hidratacao(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Relaciona o registro ao usuário
+    quantidade_agua = models.IntegerField()  # Quantidade de água em ml
+    data = models.DateField(auto_now_add=True)  # Data do registro, preenchida automaticamente
+
+    def str(self):
+        return f"{self.user.username} - {self.quantidade_agua} ml em {self.data}"
