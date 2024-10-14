@@ -9,10 +9,6 @@ pycache/
 Arquivos de log
 *.log
 
-Configurações de banco de dados locais
-db.sqlite3
-*.sqlite3
-
 Arquivos de configurações do IDE/editor
 .vscode/
 .idea/
