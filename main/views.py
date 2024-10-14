@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio
 from datetime import date
 
 
@@ -16,7 +16,7 @@ def login(request):
 
 
 def home(request):
-    return render(request, 'html/home.html')  # Renderiza o template home.html
+    return render(request, 'html/home.html') 
 
 
 def cadastro(request):
@@ -36,16 +36,14 @@ def cadastro(request):
             messages.error(request, 'CPF já cadastrado!')
             return render(request, 'html/cadastro.html')
 
-        # Criar o usuário no banco de dados
         user = User.objects.create_user(username=nome, email=email, password=password)
         user.save()
 
-        # Criar o perfil com CPF e data de cadastro
         perfil = Perfil(user=user, cpf=cpf, data_cadastro=data_cadastro)
         perfil.save()
 
         messages.success(request, 'Usuário cadastrado com sucesso!')
-        return redirect('login')  # Redireciona para a página de login após o cadastro
+        return redirect('login') 
 
     return render(request, 'html/cadastro.html')
 
@@ -59,7 +57,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return redirect('home')  # Redirecionar para a página home após login bem-sucedido
+            return redirect('home') 
         else:
             return render(request, 'html/login.html', {'error': 'Credenciais inválidas!'})
 
@@ -67,14 +65,13 @@ def login(request):
 
 
 def logout(request):
-    auth_logout(request)  # Faz o logout do usuário
-    return redirect('login')  # Redireciona para a página de login após o logout
-
+    auth_logout(request) 
+    return redirect('login')
 
 def hidratacao(request):
     if request.method == 'POST':
-        quantidade_agua = int(request.POST['quantidade_agua'])  # Obtém a quantidade de água do formulário
-        usuario = request.user  # Obtém o usuário logado
+        quantidade_agua = int(request.POST['quantidade_agua'])  
+        usuario = request.user 
         novo_registro = Hidratacao.objects.create(user=usuario, quantidade_agua=quantidade_agua)
         novo_registro.save()
 
@@ -96,7 +93,6 @@ def calculo_imc(request):
         peso = float(request.POST['peso'])
         altura = float(request.POST['altura'])
 
-        # Calcular o IMC
         imc = peso / (altura ** 2)
 
         # Armazenar o IMC no banco de dados
@@ -104,3 +100,28 @@ def calculo_imc(request):
         novo_imc.save()
 
     return render(request, 'html/meupeso.html', {'imc': imc})
+
+
+def adicionar_treino(request):
+    if request.method == 'POST':
+        dia_da_semana = request.POST['dia_da_semana']
+
+        # Cria o treino para o dia especificado
+        novo_treino = Treino.objects.create(user=request.user, dia_da_semana=dia_da_semana)
+
+        # Adiciona os exercícios ao treino
+        for i in range(len(request.POST.getlist('nome_exercicio'))):
+            nome = request.POST.getlist('nome_exercicio')[i]
+            series = int(request.POST.getlist('series')[i])
+            repeticoes = int(request.POST.getlist('repeticoes')[i])
+            Exercicio.objects.create(treino=novo_treino, nome=nome, series=series, repeticoes=repeticoes)
+
+        return redirect('meustreinos')  # Redireciona para a página de treinos
+
+    return render(request, 'html/adicionartreino.html')
+
+
+def ver_treinos(request):
+    # Busca os treinos do usuário logado
+    treinos = Treino.objects.filter(user=request.user).order_by('dia_da_semana')
+    return render(request, 'html/meustreinos.html', {'treinos': treinos})
