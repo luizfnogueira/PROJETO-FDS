@@ -17,3 +17,14 @@ class Hidratacao(models.Model):
 
     def str(self):
         return f"{self.user.username} - {self.quantidade_agua} ml em {self.data}"
+    
+
+class IMC(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Relaciona o IMC ao usuário
+    peso = models.FloatField()  # Armazena o peso do usuário
+    altura = models.FloatField()  # Armazena a altura do usuário
+    imc = models.FloatField()  # Armazena o IMC calculado
+    data_calculo = models.DateField(auto_now_add=True)  # Data do cálculo, preenchida automaticamente
+
+    def str(self):
+        return f"IMC de {self.user.username}: {self.imc}"

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao
+from .models import Perfil, Hidratacao, IMC
 from datetime import date
 
 
@@ -88,3 +88,19 @@ def historico_hidratacao(request):
     # Recupera todos os registros de hidratação do usuário logado
     registros = Hidratacao.objects.filter(user=request.user).order_by('-data')
     return render(request, 'html/historicohidratacao.html', {'registros': registros})
+
+
+def calculo_imc(request):
+    imc = None
+    if request.method == 'POST':
+        peso = float(request.POST['peso'])
+        altura = float(request.POST['altura'])
+
+        # Calcular o IMC
+        imc = peso / (altura ** 2)
+
+        # Armazenar o IMC no banco de dados
+        novo_imc = IMC.objects.create(user=request.user, peso=peso, altura=altura, imc=imc)
+        novo_imc.save()
+
+    return render(request, 'html/meupeso.html', {'imc': imc})
