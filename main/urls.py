@@ -12,4 +12,5 @@ urlpatterns = [
     path('meupeso/', views.calculo_imc, name='meupeso'),
     path('adicionartreino/', views.adicionar_treino, name='adicionartreino'),  
     path('meustreinos/', views.ver_treinos, name='meustreinos'), 
+    path('remover-treino/<int:treino_id>/', views.remover_treino, name='remover_treino'),
 ]

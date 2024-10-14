@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
@@ -125,3 +125,12 @@ def ver_treinos(request):
     # Busca os treinos do usuário logado
     treinos = Treino.objects.filter(user=request.user).order_by('dia_da_semana')
     return render(request, 'html/meustreinos.html', {'treinos': treinos})
+
+
+def remover_treino(request, treino_id):
+    # Obtém o treino pelo ID e garante que o usuário logado seja o proprietário
+    treino = get_object_or_404(Treino, id=treino_id, user=request.user)
+
+    treino.delete()
+
+    return redirect('meustreinos')
