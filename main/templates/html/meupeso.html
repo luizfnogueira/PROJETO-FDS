@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pesoeimc.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo do IMC</title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+
+    <main>
+        <h1>Cálculo do IMC</h1>
+        <p>Esta seção calcula seu Índice de Massa Corporal (IMC) com base no seu peso e altura. Insira seus dados para ver sua classificação de peso e obter uma visão rápida do seu estado nutricional. Vamos começar?</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="peso">Insira seu peso (kg):</label>
+                <input type="number" id="peso" name="peso" required step="0.1">
+            </div>
+            <div>
+                <label for="altura">Insira sua altura (m):</label>
+                <input type="number" id="altura" name="altura" required step="0.01">
+            </div>
+            <button type="submit">Calcular IMC</button>
+        </form>
+
+        {% if imc %}
+            <h2>Seu IMC é: {{ imc|floatformat:2 }}</h2>
+        {% endif %}
+    </main>
+</body>
+</html>

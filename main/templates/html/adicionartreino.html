@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Treino</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adicionar_treino.css' %}">
+    <script>
+        // Função para adicionar mais campos de exercícios dinamicamente
+        function adicionarExercicio() {
+            const container = document.getElementById('exercicios-container');
+            const exercicioIndex = container.children.length + 1;
+
+            const exercicioDiv = document.createElement('div');
+            exercicioDiv.innerHTML = `
+                <label for="nome_exercicio_${exercicioIndex}">Exercício ${exercicioIndex}:</label>
+                <input type="text" id="nome_exercicio_${exercicioIndex}" name="nome_exercicio" required>
+                <label for="series_${exercicioIndex}">Séries:</label>
+                <input type="number" id="series_${exercicioIndex}" name="series" required min="1">
+                <label for="repeticoes_${exercicioIndex}">Repetições:</label>
+                <input type="number" id="repeticoes_${exercicioIndex}" name="repeticoes" required min="1">
+            `;
+
+            container.appendChild(exercicioDiv);
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <h1>Adicionar Treino</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="dia_da_semana">Escolha o dia da semana:</label>
+                <select name="dia_da_semana" id="dia_da_semana" required>
+                    <option value="segunda">Segunda-feira</option>
+                    <option value="terca">Terça-feira</option>
+                    <option value="quarta">Quarta-feira</option>
+                    <option value="quinta">Quinta-feira</option>
+                    <option value="sexta">Sexta-feira</option>
+                    <option value="sabado">Sábado</option>
+                    <option value="domingo">Domingo</option>
+                </select>
+            </div>
+
+            <!-- container para os exercícios -->
+            <div id="exercicios-container">
+                <div>
+                    <label for="nome_exercicio_1">Exercício 1:</label>
+                    <input type="text" id="nome_exercicio_1" name="nome_exercicio" required>
+                    <label for="series_1">Séries:</label>
+                    <input type="number" id="series_1" name="series" required min="1">
+                    <label for="repeticoes_1">Repetições:</label>
+                    <input type="number" id="repeticoes_1" name="repeticoes" required min="1">
+                </div>
+            </div>
+
+            <button type="button" onclick="adicionarExercicio()">Adicionar mais um exercício</button>
+            <br><br>
+            <button type="submit">Salvar Treino</button>
+        </form>
+    </main>
+</body>
+
+</html>

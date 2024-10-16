@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
+</head>
+<body>
+    <h1>Cadastro</h1>
+    
+    <!-- Exibir mensagens de erro -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Campo Nome -->
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" required><br><br>
+        
+        <!-- Campo Email -->
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br><br>
+        
+        <!-- Campo Senha -->
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password" required><br><br>
+        
+        <!-- Campo CPF -->
+        <label for="cpf">CPF:</label>
+        <input type="text" name="cpf" id="cpf" required pattern="\d{11}" placeholder="Digite apenas números"><br><br>
+        
+        <!-- Campo Data de Cadastro -->
+        <label for="data_cadastro">Data de Cadastro:</label>
+        <input type="date" name="data_cadastro" id="data_cadastro" required><br><br>
+        
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>

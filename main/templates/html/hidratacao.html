@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hidratacao.css' %}">
+    <meta charset="UTF-8">
+    <title>Página de Hidratação</title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3"><i class="fas fa-weight"></i> Meu peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="6" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+
+    <main>
+        <section>
+            <h1>Registro de Hidratação</h1>
+
+            <!-- Formulário para adicionar quantidade de água -->
+            <form method="POST">
+                {% csrf_token %}
+                <label for="quantidade_agua">Quantos ml de água você bebeu hoje?</label>
+                <input type="number" name="quantidade_agua" id="quantidade_agua" required>
+                <button type="submit">Registrar</button>
+            </form>
+
+            <!-- Exibir o total de água consumida no dia -->
+            <div id="total">Total diário de água: {{ total_diario }} ml</div>
+
+            <!-- Link para o histórico de registros -->
+            <a href="{% url 'historicohidratacao' %}">Ver Histórico de Registros</a>
+        </section>
+    </main>
+</body>
+</html>
