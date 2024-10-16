@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORTIS - Bem-Estar e Atividades Físicas</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/PaginaInicial.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <p class="texto">Por favor, cadastre-se ou faça login para acessar a plataforma de bem-estar e atividades físicas.</p>
+            <div class="button-group">
+                <a href="{% url 'cadastro' %}">Cadastrar</a>
+                <a href="{% url 'login' %}">Fazer Login</a>
+            </div>
+        </div>
+    </div>
+
+    <h1>Bem-vindo ao FORTIS</h1>
+    
+    <footer>
+        <p>&copy; 2024 FORTIS - Bem-Estar e Atividades Físicas</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Treinos</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/meustreinos.css' %}">
+</head>
+
+<body>
+    <nav class="menu" role="navigation" aria-label="Main Navigation">
+        <a href="{% url 'home' %}" tabindex="1" aria-label="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2" aria-label="Hidratação"><i class="fas fa-water"></i> Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3" aria-label="Meu Peso"><i class="fas fa-weight"></i> Meu peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="5" style="border:none; background:none; color:#000; cursor:pointer;" aria-label="Log out">
+                <i class="fas fa-sign-out-alt"></i> Log out
+            </button>
+        </form>
+    </nav>
+
+    <main>
+        <h1>Meus Treinos da Semana</h1>
+
+        <!-- Listar treinos por dia da semana -->
+        <ul>
+            {% for treino in treinos %}
+            <li>
+                <h2>{{ treino.get_dia_da_semana_display }}</h2>
+                <ul>
+                    {% for exercicio in treino.exercicios.all %}
+                    <li>{{ exercicio.nome }} - {{ exercicio.series }} séries de {{ exercicio.repeticoes }} repetições</li>
+                    {% endfor %}
+                </ul>
+
+                <!-- Botão de Remover Treino -->
+                <form action="{% url 'remover_treino' treino.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="remover-btn">Remover Treino</button>
+                </form>
+            </li>
+            {% empty %}
+            <li>Você ainda não adicionou treinos.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'adicionartreino' %}">Adicionar novo treino</a>
+    </main>
+</body>
+
+</html>
