@@ -10,14 +10,14 @@
     <nav class="menu">
         <a href="{% url 'home' %}" tabindex="1">Home</a>
         <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
-        <a href="{% url 'meupeso' %}" tabindex="3">Meu peso</a>
-        <a href="{% url 'meustreinos' %}" tabindex="4"><i class="fas fa-dumbbell"></i> Meus treinos</a>
-        <a href="{% url 'estresse' %}" tabindex="5">Reduzir estresse</a>
-        <a href="#saude" tabindex="6"><i class="fas fa-heartbeat"></i> Saúde</a>
-        
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
+
+        <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" tabindex="7" style="border:none; background:none; color:#000; cursor:pointer;">
+            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
                 Log out
             </button>
         </form>
