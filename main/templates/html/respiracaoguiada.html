@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respiração guiada</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/respiracaoguiada.css' %}">
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1"><i class="fa-light fa-house"></i> Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2"><i class="fas fa-water"></i> Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3"><i class="fas fa-weight"></i> Meu peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'estresse' %}" tabindex="5"><i class="fas fa-spa"></i> Reduzir estresse</a>
+        <a href="#saude" tabindex="6"><i class="fas fa-heartbeat"></i> Saúde</a>
+        
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="7" style="border:none; background:none; color:#000; cursor:pointer;">
+                <i class="fas fa-sign-out-alt"></i> Log out
+            </button>
+        </form>
+    </nav>
+    <h1>Tutorial de respiração guiada:</h1>
+    <h2>1.Preparação</h2>
+    <p>Encontre um local tranquilo onde você possa sentar ou deitar confortavelmente.
+        <br>
+        Feche os olhos e respire normalmente por alguns momentos para começar a se acomodar.</p>
+        <br>
+    <h2>2.Técnica de respiração profunda:</h2>
+    <p>Inspire: Respire lenta e profundamente pelo nariz, contando até quatro. Sinta o ar preenchendo seus pulmões e expandindo sua barriga.
+        <br>
+        Segure: Mantenha a respiração por um momento, contando até quatro.
+        <br>
+        Expire: Solte o ar lentamente pela boca, contando até quatro. Tente esvaziar completamente os pulmões.
+        <br>
+        Repita: Continue esse ciclo por 5 a 10 minutos. Concentre-se em manter o ritmo e a profundidade da respiração.</p>
+    <br>
+    <h2>3.Técnica de respiração diafragmática:</h2>
+    <p>Coloque uma mão no peito e a outra no abdômen.
+        <br>
+        Inspire: Respire lentamente pelo nariz, garantindo que o abdômen se eleve mais do que o peito. Isso indica que você está usando o diafragma para respirar.
+        <br>
+        Expire: Solte o ar pela boca, sentindo o abdômen descer.
+        <br>
+        Repita: Continue por 5 a 10 minutos, focando na elevação e descida do abdômen em vez do peito.</p>
+    <br>
+    <h2>4.Técnica de respiração 4-7-8:</h2>
+    <p>Inspire: Respire pelo nariz contando até quatro.
+        <br>
+        Segure: Mantenha a respiração contando até sete.
+        <br>
+        Expire: Solte o ar pela boca contando até oito.
+        <br>
+        Repita: Faça isso por 4 ciclos. Essa técnica pode ajudar a reduzir a ansiedade e melhorar a qualidade do sono.</p>
+    <br>
+    <h2>5.Técnica de respiração alternada:</h2>
+    <p>Feche uma narina: Com o polegar, feche suavemente uma narina.
+        <br>
+        Inspire: Respire profundamente pela narina aberta.
+        <br>
+        Troque de narina: Feche a outra narina com o dedo anelar e solte a primeira narina.
+        <br>
+        Expire: Solte o ar pela narina aberta.
+        <br>
+        Repita: Faça isso por 5 a 10 minutos, alternando as narinas.</p>
+        <br>
+        <a href="{% url 'sentimento' %}">Realizou a prática? registre suas considerações! </a>
+    
+</body>
+</html>

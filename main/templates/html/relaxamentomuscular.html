@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relaxamento muscular</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/relaxamento.css' %}">
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1"><i class="fa-light fa-house"></i> Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2"><i class="fas fa-water"></i> Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3"><i class="fas fa-weight"></i> Meu peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'estresse' %}" tabindex="5"><i class="fas fa-spa"></i> Reduzir estresse</a>
+        <a href="#saude" tabindex="6"><i class="fas fa-heartbeat"></i> Saúde</a>
+        
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="7" style="border:none; background:none; color:#000; cursor:pointer;">
+                <i class="fas fa-sign-out-alt"></i> Log out
+            </button>
+        </form>
+    </nav>
+    <h1>Tutorial de relaxamento muscular:</h1>
+    <h2>1.Preparação</h2>
+    <p>Encontre um local tranquilo onde você possa sentar ou deitar confortavelmente.
+        <br>
+        Feche os olhos e respire profundamente algumas vezes para se acalmar e se preparar para o exercício.</p>
+    <br>
+    <h2>2.Técnicas de relaxamento muscular progressivo:</h2>
+    <h3>    Concentre-se em cada grupo muscular:</h3>
+    <p>Pés e Pernas: Comece com os pés. Aperte os músculos dos pés e das panturrilhas tão forte quanto conseguir, mantendo a tensão por 5 a 10 segundos. Em seguida, relaxe lentamente e sinta a diferença.
+        <br>
+        Coxas: Suba para as coxas. Contraia os músculos das coxas por 5 a 10 segundos e depois relaxe. Note como o relaxamento faz com que seus músculos fiquem mais soltos.
+        <br>
+        Glúteos: Aperte os músculos dos glúteos e segure por 5 a 10 segundos antes de relaxar.
+        <br>
+        Abdômen: Contraia os músculos do abdômen por 5 a 10 segundos e depois relaxe.
+        <br>
+        Mãos e Braços: Faça o mesmo com as mãos, fechando-as em punho e depois relaxando. Suba para os braços, apertando os músculos do bíceps e tríceps.
+        <br>
+        Ombros e Pescoço: Levante os ombros em direção às orelhas e segure por 5 a 10 segundos. Relaxe e permita que os ombros caiam para baixo. Faça movimentos suaves com o pescoço para aliviar a tensão.
+        <br>
+        Rosto: Contraia os músculos faciais (testa, bochechas, mandíbula) por 5 a 10 segundos e depois relaxe.
+        </p>
+    <h3>    Respiração profunda:</h3>
+       <p>Enquanto relaxa cada grupo muscular, respire profundamente e lentamente. Inspire pelo nariz, enchendo os pulmões e exale pela boca, liberando toda a tensão.</p>
+    <br>
+    <h2>3.Relaxamento geral:</h2>
+    <p>Após passar por todos os grupos musculares, passe alguns minutos simplesmente relaxando e respirando profundamente. Sinta o estado de relaxamento se espalhar por todo o corpo.</p>
+    <br>
+    <h2>4.Finalização:</h2>
+    <p>Ao terminar, tome um momento para refletir sobre como seu corpo se sente. Compare a sensação de relaxamento com a tensão que você tinha antes do exercício.</p>
+    <br>
+        <a href="{% url 'sentimento' %}">Realizou a prática? registre suas considerações! </a>
+    
+</body>
+</html>

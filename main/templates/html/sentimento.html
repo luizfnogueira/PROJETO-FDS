@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sentimento.css' %}">
+    <meta charset="UTF-8">
+    <title>Registro de Humor</title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'estresse' %}" tabindex="5">Reduzir estresse</a>
+        <a href="#saude" tabindex="6"><i class="fas fa-heartbeat"></i> Saúde</a>
+        
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="7" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+
+    <main>
+        <section>
+            <h1>Registro de Humor</h1>
+
+            {% if mensagem %}
+                <div class="mensagem">{{ mensagem }}</div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <label for="pratica">Qual prática você realizou?</label>
+                <select name="pratica" id="pratica" required>
+                    <option value="" disabled selected>Selecione uma prática</option>
+                    <option value="alongamento">Alongamento</option>
+                    <option value="relaxamento">Relaxamento Muscular</option>
+                    <option value="respiracao">Respiração Guiada</option>
+                </select>
+
+                <label for="humor">Como você se sente após a prática?</label>
+                <select name="humor" id="humor" required>
+                    <option value="" disabled selected>Selecione seu humor</option>
+                    <option value="excelente">Excelente</option>
+                    <option value="bom">Bom</option>
+                    <option value="neutro">Neutro</option>
+                    <option value="ruim">Ruim</option>
+                    <option value="péssimo">Péssimo</option>
+                </select>
+                <br>
+
+                <button type="submit">Registrar Humor</button>
+            </form>
+
+            <a class="botao" href="{% url 'historicohumor' %}">Ver Histórico de Humor</a>
+        </section>
+    </main>
+</body>
+</html>

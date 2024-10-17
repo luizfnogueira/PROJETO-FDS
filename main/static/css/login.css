@@ -42,16 +42,23 @@ label {
     display: block; /* Faz o label ocupar a linha inteira */
 }
 
-input[type="email"],
+input[type="text"] {
+    padding: 10px; /* Espaçamento interno do campo de entrada */
+    border-radius: 5px; /* Bordas arredondadas */
+    border: 1px solid #ccc; /* Borda do campo */
+    width: 95%; /* Largura total do campo */
+    transition: border-color 0.3s; /* Transição suave ao focar */
+}
+
 input[type="password"] {
     padding: 10px; /* Espaçamento interno do campo de entrada */
     border-radius: 5px; /* Bordas arredondadas */
     border: 1px solid #ccc; /* Borda do campo */
-    width: 100%; /* Largura total do campo */
+    width: 95%; /* Largura total do campo */
     transition: border-color 0.3s; /* Transição suave ao focar */
 }
 
-input[type="email"]:focus,
+input[type="text"]:focus,
 input[type="password"]:focus {
     border-color: #007BFF; /* Borda azul ao focar */
     outline: none; /* Remove a borda padrão */
