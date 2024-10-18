@@ -19,8 +19,8 @@
         <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
-                Log out
+            <button type="submit" tabindex="4" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Log out
             </button>
         </form>
     </nav>

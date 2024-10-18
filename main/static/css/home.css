@@ -55,6 +55,35 @@ p {
     font-size: 1.2em; /* Tamanho ajustável */
 }
 
+.logout-btn {
+    background-color: #FF5733;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn i {
+    font-size: 18px;
+}
+
+.logout-btn:hover {
+    background-color: #FF4500;
+    transform: scale(1.05);
+}
+
+.logout-btn:active {
+    background-color: #FF3300;
+    transform: scale(0.95);
+}
+
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2em; /* Ajuste para telas menores */
