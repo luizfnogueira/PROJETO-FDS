@@ -134,3 +134,18 @@ def remover_treino(request, treino_id):
     treino.delete()
 
     return redirect('meustreinos')
+
+def alongamento(request):
+    return render(request, 'html/alongamento.html')
+
+def relaxamentomuscular(request):
+    return render(request, 'html/relaxamentomuscular.html')
+
+def respiracaoguiada(request):
+    return render(request, 'html/respiracaoguiada.html')
+
+def sentimento(request):
+    return render(request, 'html/sentimento.html')
+
+def tecnicaspbemestar(request):
+    return render(request, 'html/tecnicaspbemestar.html')

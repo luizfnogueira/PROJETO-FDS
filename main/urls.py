@@ -13,4 +13,9 @@ urlpatterns = [
     path('adicionartreino/', views.adicionar_treino, name='adicionartreino'),  
     path('meustreinos/', views.ver_treinos, name='meustreinos'), 
     path('remover-treino/<int:treino_id>/', views.remover_treino, name='remover_treino'),
+    path('alongamento/', views.alongamento, name='alongamento'), 
+    path('tecnicaspbemestar/', views.tecnicaspbemestar, name='tecnicaspbemestar'),  
+    path('sentimento/', views.sentimento, name='sentimento'), 
+    path('respiracaoguiada/', views.respiracaoguiada, name='respiracaoguiada'),  
+    path('relaxamentomuscular/', views.relaxamentomuscular, name='relaxamentomuscular'), 
 ]
