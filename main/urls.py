@@ -19,4 +19,6 @@ urlpatterns = [
     path('respiracaoguiada/', views.respiracaoguiada, name='respiracaoguiada'),  
     path('relaxamentomuscular/', views.relaxamentomuscular, name='relaxamentomuscular'), 
     path('historicohumor/', views.historico_humor, name='historicohumor'),
+    path('saude/', views.saude, name='saude'),
+    path('registrosaude/', views.registrosaude, name='registrosaude'),
 ]

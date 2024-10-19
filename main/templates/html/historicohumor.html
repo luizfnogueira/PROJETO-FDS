@@ -13,6 +13,8 @@
         <a href="{% url 'meupeso' %}">Meu Peso</a>
         <a href="{% url 'meustreinos' %}">Meus Treinos</a>
         <a href="{% url 'tecnicaspbemestar' %}">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
+
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
             <button type="submit" style="border:none; background:none; color:#000; cursor:pointer;">

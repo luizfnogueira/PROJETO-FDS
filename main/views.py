@@ -171,3 +171,9 @@ def respiracaoguiada(request):
 
 def tecnicaspbemestar(request):
     return render(request, 'html/tecnicaspbemestar.html')
+
+def saude(request):
+    return render(request, 'html/saude.html')
+
+def registrosaude(request):
+    return render(request, 'html/registrosaude.html')

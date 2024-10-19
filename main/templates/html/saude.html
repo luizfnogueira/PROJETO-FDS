@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/saude.css' %}">
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
+
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="4">
+                Log out
+            </button>
+        </form>
+    </nav>
+
+    <h1>Olá!</h1>
+    <p>Para personalizar a melhor abordagem para o seu bem-estar, gostaríamos de saber mais sobre sua situação. Você pode nos ajudar respondendo às seguintes perguntas?</p>
+
+    <form action="#" method="post">
+
+        <label for="sintoma">Você está experienciando algum sintoma? Se sim, qual:</label>
+        <input type="text" id="sintoma" name="sintoma" placeholder="Descreva seu sintoma">
+
+        <label for="intensidade">Qual é a intensidade do sintoma?</label>
+        <select id="intensidade" name="intensidade">
+            <option value="leve">Leve</option>
+            <option value="moderada">Moderada</option>
+            <option value="intensa">Intensa</option>
+        </select>
+
+        <label for="area">Em qual área do corpo você está sentindo o sintoma? (se aplicável):</label>
+        <input type="text" id="area" name="area" placeholder="Ex: cabeça, estômago">
+
+        <label for="medicamento">Você está tomando ou já tomou algum medicamento para esse sintoma? Se sim, qual:</label>
+        <input type="text" id="medicamento" name="medicamento" placeholder="Descreva o medicamento">
+
+        <label for="medico">Você já consultou algum médico sobre esse sintoma? Se sim, qual foi o diagnóstico ou recomendação?</label>
+        <input type="text" id="medico" name="medico" placeholder="Descreva o diagnóstico ou recomendação">
+
+        <input type="submit" value="registrar">
+        <br>
+        <a class="botao" href="{% url 'registrosaude' %}">Ver registros</a>
+        
+    </form>
+
+</body>
+</html>
