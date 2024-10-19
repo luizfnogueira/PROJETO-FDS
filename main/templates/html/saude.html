@@ -32,6 +32,7 @@
         {% csrf_token %}
         <label for="sintoma">Você está experienciando algum sintoma? Se sim, qual:</label>
         <input type="text" id="sintoma" name="sintoma" placeholder="Descreva seu sintoma">
+        <br>
 
         <label for="intensidade">Qual é a intensidade do sintoma?</label>
         <select id="intensidade" name="intensidade">
@@ -39,15 +40,19 @@
             <option value="moderada">Moderada</option>
             <option value="intensa">Intensa</option>
         </select>
+        <br>
 
         <label for="area">Em qual área do corpo você está sentindo o sintoma? (se aplicável):</label>
         <input type="text" id="area" name="area" placeholder="Ex: cabeça, estômago">
+        <br>
 
         <label for="medicamento">Você está tomando ou já tomou algum medicamento para esse sintoma? Se sim, qual:</label>
         <input type="text" id="medicamento" name="medicamento" placeholder="Descreva o medicamento">
+        <br>
 
         <label for="medico">Você já consultou algum médico sobre esse sintoma? Se sim, qual foi o diagnóstico ou recomendação?</label>
         <input type="text" id="medico" name="medico" placeholder="Descreva o diagnóstico ou recomendação">
+        <br>
 
         <input type="submit" value="Registrar">
         <br>
