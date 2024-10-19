@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sono.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Sono</title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+
+    <h1>Registro de Sono</h1>
+    <form id="sleepForm">
+        <label for="hours">Quantidade de horas dormidas:</label>
+        <input type="number" id="hours" name="hours" min="0" max="24" required>
+        <br>
+
+        <label for="quality">Qualidade do sono (nota de 1 a 10):</label>
+        <input type="number" id="quality" name="quality" min="1" max="10" required>
+        <br>
+
+        <label for="goal">Meta para o sono:</label>
+        <textarea id="goal" name="goal" rows="3" required></textarea>
+        <br>
+
+        <button type="submit">Salvar Registro</button>
+        <br>
+        <a class="botao" href="{% url 'horassono' %}">Ver registros de sono</a>
+    </form>
+
+    <script>
+        document.getElementById('sleepForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const hours = document.getElementById('hours').value;
+            const quality = document.getElementById('quality').value;
+            const goal = document.getElementById('goal').value;
+
+            // Aqui você pode adicionar a lógica para salvar os dados (por exemplo, em um banco de dados)
+            console.log(`Horas Dormidas: ${hours}, Qualidade: ${quality}, Meta: ${goal}`);
+
+            // Limpar o formulário após o envio
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>

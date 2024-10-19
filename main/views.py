@@ -195,3 +195,9 @@ def registrosaude(request):
     registros = RegistroSaude.objects.all().order_by('-data') 
     return render(request, 'html/registrosaude.html', {'registros': registros})
 
+def sono(request):
+    return render(request, 'html/sono.html')
+
+def horassono(request):
+    return render(request, 'html/horassono.html')
+
