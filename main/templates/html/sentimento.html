@@ -33,24 +33,14 @@
 
             <form method="POST">
                 {% csrf_token %}
-                <label for="pratica">Qual prática você realizou?</label>
-                <select name="pratica" id="pratica" required>
-                    <option value="" disabled selected>Selecione uma prática</option>
-                    <option value="alongamento">Alongamento</option>
-                    <option value="relaxamento">Relaxamento Muscular</option>
-                    <option value="respiracao">Respiração Guiada</option>
-                </select>
-
-                <label for="humor">Como você se sente após a prática?</label>
-                <select name="humor" id="humor" required>
-                    <option value="" disabled selected>Selecione seu humor</option>
-                    <option value="excelente">Excelente</option>
-                    <option value="bom">Bom</option>
-                    <option value="neutro">Neutro</option>
-                    <option value="ruim">Ruim</option>
-                    <option value="péssimo">Péssimo</option>
-                </select>
-                <br>
+                
+                <!-- Campo para atividade -->
+                <label for="atividade">Qual prática você realizou?</label>
+                <input type="text" name="atividade" id="atividade" required placeholder="Ex: Alongamento, Relaxamento, Respiração Guiada"><br><br>
+                
+                <!-- Campo para sentimento -->
+                <label for="sentimento">Como você se sente após a prática?</label>
+                <textarea name="sentimento" id="sentimento" required placeholder="Descreva seu sentimento aqui..." rows="4" cols="50"></textarea><br><br>
 
                 <button type="submit">Registrar Humor</button>
             </form>

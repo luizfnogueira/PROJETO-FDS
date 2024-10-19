@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC, Treino, Exercicio
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade
 from datetime import date
 
 
@@ -48,7 +48,7 @@ def cadastro(request):
     return render(request, 'html/cadastro.html')
 
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -135,6 +135,31 @@ def remover_treino(request, treino_id):
 
     return redirect('meustreinos')
 
+def sentimento(request):
+    if request.method == 'POST':
+        atividade_texto = request.POST['atividade']
+        sentimento_texto = request.POST['sentimento']
+        usuario = request.user
+
+        # Verifica se a atividade já existe, senão cria uma nova
+        atividade, created = Atividade.objects.get_or_create(nome=atividade_texto)
+
+        # Criar um novo registro de sentimento
+        sentimento = Sentimento.objects.create(usuario=usuario, atividade=atividade, sentimento=sentimento_texto)
+        sentimento.save()
+
+        # Mensagem de sucesso
+        messages.success(request, 'Seu sentimento foi registrado com sucesso!')
+
+        return redirect('sentimento')  # Redirecionar para a mesma página
+
+    return render(request, 'html/sentimento.html')
+
+def historico_humor(request):
+    # Busca todos os registros de sentimento do usuário
+    registros = Sentimento.objects.filter(usuario=request.user).select_related('atividade').order_by('-data')
+    return render(request, 'html/historicohumor.html', {'registros': registros})
+
 def alongamento(request):
     return render(request, 'html/alongamento.html')
 
@@ -143,9 +168,6 @@ def relaxamentomuscular(request):
 
 def respiracaoguiada(request):
     return render(request, 'html/respiracaoguiada.html')
-
-def sentimento(request):
-    return render(request, 'html/sentimento.html')
 
 def tecnicaspbemestar(request):
     return render(request, 'html/tecnicaspbemestar.html')

@@ -55,3 +55,19 @@ class Exercicio(models.Model):
 
     def str(self):
         return f"{self.nome} - {self.series} séries de {self.repeticoes} repetições"
+
+class Atividade(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return self.nome
+
+class Sentimento(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE)
+    sentimento = models.CharField(max_length=100)
+    data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.usuario} - {self.atividade} - {self.sentimento}"
