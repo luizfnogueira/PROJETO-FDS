@@ -1,0 +1,127 @@
+/* Estilo básico do corpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Fundo da página */
+    color: #333; /* Cor do texto */
+}
+
+/* Estilos do menu */
+nav.menu {
+    background-color: #4CAF50; /* Cor do fundo do menu */
+    padding: 5px; /* Espaçamento interno do menu */
+    display: flex; /* Usar flexbox para o layout */
+    justify-content: space-around; /* Espaçamento entre os itens */
+    align-items: center; /* Centraliza os itens verticalmente */
+    position: sticky; /* Menu fixa no topo ao rolar */
+    top: 0; /* Fica no topo */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+/* Estilo comum para links e botões no menu */
+nav.menu a,
+nav.menu button.logout-btn {
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    font-size: 18px; /* Tamanho da fonte */
+    transition: color 0.3s; /* Transição suave para a cor */
+    background: none; /* Sem fundo */
+    border: none; /* Sem borda */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    padding: 10px 20px; /* Espaçamento interno */
+    display: flex; /* Flexbox para alinhar itens */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+/* Hover para links e botão de logout */
+nav.menu a:hover,
+nav.menu button.logout-btn:hover {
+    color: #e0e0e0; /* Cor ao passar o mouse */
+}
+
+/* Estilo específico para o botão de logout */
+nav.menu button.logout-btn {
+    background-color: #4CAF50; /* Cor de fundo do botão */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s, transform 0.2s; /* Transições para efeitos */
+}
+
+/* Efeitos de hover e clique para o botão de logout */
+nav.menu button.logout-btn:hover {
+    background-color: #FF4500; /* Cor ao passar o mouse */
+}
+
+nav.menu button.logout-btn:active {
+    background-color: #FF3300; /* Cor ao clicar */
+    transform: scale(0.95); /* Efeito de clique */
+}
+
+/* Estilo principal */
+main {
+    max-width: 800px; /* Largura máxima */
+    margin: 60px auto; /* Centraliza horizontalmente e adiciona margem superior */
+    padding: 20px; /* Espaçamento interno */
+    background: white; /* Cor de fundo */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: center; /* Centraliza o texto */
+}
+
+h1 {
+    color: #4CAF50; /* Cor do título */
+    font-size: 32px; /* Tamanho do título */
+}
+
+p {
+    font-size: 18px; /* Tamanho do parágrafo */
+    line-height: 1.6; /* Espaçamento entre linhas */
+}
+
+/* Estilo do formulário */
+form {
+    display: flex; /* Flexbox para layout */
+    flex-direction: column; /* Direção vertical */
+    align-items: center; /* Centraliza itens */
+    margin-top: 20px; /* Margem superior */
+}
+
+form div {
+    margin-bottom: 15px; /* Espaçamento inferior entre os elementos do formulário */
+    text-align: center; /* Centraliza o texto */
+}
+
+label {
+    font-size: 18px; /* Tamanho do rótulo */
+}
+
+/* Estilo para input numérico */
+input[type="number"] {
+    padding: 10px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    width: 200px; /* Largura do campo */
+    margin-top: 5px; /* Margem superior */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Estilo dos botões */
+button {
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 18px; /* Tamanho da fonte */
+    color: white; /* Cor do texto */
+    background-color: #4CAF50; /* Cor de fundo */
+    border: none; /* Sem borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: background-color 0.3s; /* Transição de cor */
+}
+
+button:hover {
+    background-color: #45a049; /* Cor ao passar o mouse */
+}
+
+h2 {
+    color: #333; /* Cor do subtítulo */
+    margin-top: 20px; /* Margem superior */
+}
