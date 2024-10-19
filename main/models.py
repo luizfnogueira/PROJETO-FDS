@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -71,3 +72,14 @@ class Sentimento(models.Model):
 
     def __str__(self):
         return f"{self.usuario} - {self.atividade} - {self.sentimento}"
+
+class RegistroSaude(models.Model):
+    sintoma = models.CharField(max_length=255, blank=True, null=True)
+    intensidade = models.CharField(max_length=50)
+    area = models.CharField(max_length=255, blank=True, null=True)
+    medicamento = models.CharField(max_length=255, blank=True, null=True)
+    medico = models.CharField(max_length=255, blank=True, null=True)
+    data = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.sintoma} - {self.intensidade}"

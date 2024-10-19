@@ -12,11 +12,10 @@
         <a href="{% url 'home' %}" tabindex="1">Home</a>
         <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
         <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
-        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4">Meus treinos</a>
         <a href="{% url 'tecnicaspbemestar' %}" tabindex="5">Bem-estar</a>
         <a href="{% url 'saude' %}" tabindex="6">Saúde</a>
 
-        <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
             <button type="submit" tabindex="7">Log out</button>
@@ -27,9 +26,28 @@
         <h1>Registros de Saúde</h1>
         <p>Abaixo estão os registros de saúde que você enviou:</p>
 
-   
+        <table>
+            <tr>
+                <th>Data</th>
+                <th>Sintoma</th>
+                <th>Intensidade</th>
+                <th>Área</th>
+                <th>Medicamento</th>
+                <th>Médico</th>
+            </tr>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro.data }}</td>
+                <td>{{ registro.sintoma }}</td>
+                <td>{{ registro.intensidade }}</td>
+                <td>{{ registro.area }}</td>
+                <td>{{ registro.medicamento }}</td>
+                <td>{{ registro.medico }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
         <a class="botao" href="{% url 'saude' %}">Voltar ao Formulário</a>
     </main>
-
 </body>
 </html>

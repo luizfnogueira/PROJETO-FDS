@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude
 from datetime import date
 
 
@@ -173,7 +173,25 @@ def tecnicaspbemestar(request):
     return render(request, 'html/tecnicaspbemestar.html')
 
 def saude(request):
+    if request.method == 'POST':
+        sintoma = request.POST.get('sintoma')
+        intensidade = request.POST.get('intensidade')
+        area = request.POST.get('area')
+        medicamento = request.POST.get('medicamento')
+        medico = request.POST.get('medico')
+
+        RegistroSaude.objects.create(
+            sintoma=sintoma,
+            intensidade=intensidade,
+            area=area,
+            medicamento=medicamento,
+            medico=medico
+        )
+        return redirect('registrosaude')
+
     return render(request, 'html/saude.html')
 
 def registrosaude(request):
-    return render(request, 'html/registrosaude.html')
+    registros = RegistroSaude.objects.all().order_by('-data') 
+    return render(request, 'html/registrosaude.html', {'registros': registros})
+

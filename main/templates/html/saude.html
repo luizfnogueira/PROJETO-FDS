@@ -28,8 +28,8 @@
     <h1>Olá!</h1>
     <p>Para personalizar a melhor abordagem para o seu bem-estar, gostaríamos de saber mais sobre sua situação. Você pode nos ajudar respondendo às seguintes perguntas?</p>
 
-    <form action="#" method="post">
-
+    <form action="{% url 'saude' %}" method="post">
+        {% csrf_token %}
         <label for="sintoma">Você está experienciando algum sintoma? Se sim, qual:</label>
         <input type="text" id="sintoma" name="sintoma" placeholder="Descreva seu sintoma">
 
@@ -49,11 +49,9 @@
         <label for="medico">Você já consultou algum médico sobre esse sintoma? Se sim, qual foi o diagnóstico ou recomendação?</label>
         <input type="text" id="medico" name="medico" placeholder="Descreva o diagnóstico ou recomendação">
 
-        <input type="submit" value="registrar">
+        <input type="submit" value="Registrar">
         <br>
         <a class="botao" href="{% url 'registrosaude' %}">Ver registros</a>
-        
     </form>
-
 </body>
 </html>
