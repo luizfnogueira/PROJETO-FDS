@@ -29,13 +29,20 @@
     <h1>Registro de Sono - Exibição</h1>
     
     <div>
-        <h2>Horas Dormidas</h2>
-        <p><strong>Horas dormidas no dia:</strong></p>
-        <p><strong>Horas dormidas na semana:</strong> </p>
-        <p><strong>Meta de sono:</strong></p>
-        <br>
+        <h2>Registros de Sono</h2>
+        <ul>
+            {% for registro in registros %}
+                <li>
+                    <strong>Horas dormidas:</strong> {{ registro.horas_dormidas }} <br>
+                    <strong>Qualidade do sono:</strong> {{ registro.qualidade_sono }} <br>
+                    <strong>Meta:</strong> {{ registro.meta_sono }} <br>
+                    <strong>Data:</strong> {{ registro.data_registro|date:"d/m/Y H:i" }} <br>
+                </li>
+            {% empty %}
+                <li>Nenhum registro encontrado.</li>
+            {% endfor %}
+        </ul>
         <a class="botao" href="{% url 'sono' %}">Voltar para o registro</a>
     </div>
-
 </body>
 </html>

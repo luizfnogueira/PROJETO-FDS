@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono
 from datetime import date
+
 
 
 def paginainicial(request):
@@ -200,4 +201,22 @@ def sono(request):
 
 def horassono(request):
     return render(request, 'html/horassono.html')
+
+def sono(request):
+    if request.method == "POST":
+        horas_dormidas = int(request.POST.get('hours'))
+        qualidade_sono = int(request.POST.get('quality'))
+        meta_sono = request.POST.get('goal')
+
+        # Salvar no banco de dados
+        novo_registro = Sono(horas_dormidas=horas_dormidas, qualidade_sono=qualidade_sono, meta_sono=meta_sono)
+        novo_registro.save()
+
+        return redirect('horassono')  # Redireciona para a página de visualização
+
+    return render(request, 'html/sono.html')
+
+def horassono(request):
+    registros = Sono.objects.all().order_by('-data_registro')  # Exibe os registros mais recentes primeiro
+    return render(request, 'html/horassono.html', {'registros': registros})
 

@@ -83,3 +83,12 @@ class RegistroSaude(models.Model):
 
     def __str__(self):
         return f"{self.sintoma} - {self.intensidade}"
+    
+class Sono(models.Model):
+    horas_dormidas = models.IntegerField()
+    qualidade_sono = models.IntegerField()
+    meta_sono = models.TextField()
+    data_registro = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Sono: {self.horas_dormidas} horas, Qualidade: {self.qualidade_sono}"

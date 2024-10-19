@@ -27,7 +27,8 @@
     </nav>
 
     <h1>Registro de Sono</h1>
-    <form id="sleepForm">
+    <form id="sleepForm" method="post">
+        {% csrf_token %}
         <label for="hours">Quantidade de horas dormidas:</label>
         <input type="number" id="hours" name="hours" min="0" max="24" required>
         <br>
@@ -44,21 +45,5 @@
         <br>
         <a class="botao" href="{% url 'horassono' %}">Ver registros de sono</a>
     </form>
-
-    <script>
-        document.getElementById('sleepForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const hours = document.getElementById('hours').value;
-            const quality = document.getElementById('quality').value;
-            const goal = document.getElementById('goal').value;
-
-            // Aqui você pode adicionar a lógica para salvar os dados (por exemplo, em um banco de dados)
-            console.log(`Horas Dormidas: ${hours}, Qualidade: ${quality}, Meta: ${goal}`);
-
-            // Limpar o formulário após o envio
-            this.reset();
-        });
-    </script>
-
 </body>
 </html>
