@@ -146,9 +146,10 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 <details>
 <summary>📧 Entrega 3</summary>
   
-### 📄 Jira sprint 2 
+### 📄 Jira sprint 3 
 
-  <img src="https://github.com/user-attachments/assets/" alt="Repository Size">
+  <img src="https://github.com/user-attachments/assets/9ac22c26-b3c1-4bd8-a0e1-9f3cf079cbe9)
+" alt="Repository Size">
   <img src="https://github.com/user-attachments/assets/" alt="Repository Size">
   <img src="https://github.com/user-attachments/assets/43007258-d366-4fa2-9155-599cba485a09)
 " alt="Repository Size">
