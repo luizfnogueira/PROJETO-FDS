@@ -160,6 +160,16 @@ Marina Hoffmann Guimarães - mhg@cesar.school
   <img src="https://github.com/user-attachments/assets/123d5bfe-9b32-499d-b73c-00f9c18e6966" alt="Repository Size">
   <br>
   
+  ### 📄 Prototipação Lo-Fi
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://www.figma.com/design/Vo7Jd6HeI0TCrXF3rnj5kF/FORTIS?node-id=0-1&t=AL28ZR4ofulLp0Oe-1" style="text-decoration: none;">
+    <span>🔗 Figma</span>
+  </a>
+</p>
+
+<br>
+  
 
 <br>
   
