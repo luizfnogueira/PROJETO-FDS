@@ -148,11 +148,18 @@ Marina Hoffmann Guimarães - mhg@cesar.school
   
 ### 📄 Jira sprint 3 
 
-  <img src="https://github.com/user-attachments/assets/9ac22c26-b3c1-4bd8-a0e1-9f3cf079cbe9" alt="Repository Size">
+  <img src="https://github.com/user-attachments/assets/07027a78-5846-4855-b287-03cf1548da47" alt="Repository Size">
   <br>
-  <img src="https://github.com/user-attachments/assets/8253cb48-cb95-40d7-a337-f1935b0d06d5" alt="Repository Size">
+  <img src="https://github.com/user-attachments/assets/13531bf4-e9d0-4938-8df4-eaeb176ee839" alt="Repository Size">
   <br>
-  <img src="https://github.com/user-attachments/assets/9fe04990-27a9-4345-b409-c69e7cd4639c" alt="Repository Size">
+  <img src="https://github.com/user-attachments/assets/4dd4cf12-5e07-4f6d-8437-a95dae71c54e" alt="Repository Size">
+  <br>
+  
+  ### 📄 Jira Backlog
+
+  <img src="https://github.com/user-attachments/assets/123d5bfe-9b32-499d-b73c-00f9c18e6966" alt="Repository Size">
+  <br>
+  
 
 <br>
   
