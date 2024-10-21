@@ -9,20 +9,16 @@
 </head>
 <body>
     <nav class="menu">
-        <a href="{% url 'home' %}" tabindex="1">Home</a>
-        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
-        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
-        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
-        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
-        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
-        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
-
-        <!-- Botão de logout -->
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'hidratacao' %}">Hidratação</a>
+        <a href="{% url 'meupeso' %}">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}">Meus Treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}">Bem-estar</a>
+        <a href="{% url 'saude' %}">Saúde</a>
+        <a href="{% url 'sono' %}">Sono</a>
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" tabindex="4">
-                Log out
-            </button>
+            <button type="submit">Log out</button>
         </form>
     </nav>
 
@@ -31,11 +27,11 @@
 
     <form action="{% url 'saude' %}" method="post">
         {% csrf_token %}
-        <label for="sintoma">Você está experienciando algum sintoma? Se sim, qual:</label>
+        <label for="sintoma">Sintoma:</label>
         <input type="text" id="sintoma" name="sintoma" placeholder="Descreva seu sintoma">
         <br>
 
-        <label for="intensidade">Qual é a intensidade do sintoma?</label>
+        <label for="intensidade">Intensidade:</label>
         <select id="intensidade" name="intensidade">
             <option value="leve">Leve</option>
             <option value="moderada">Moderada</option>
@@ -43,15 +39,15 @@
         </select>
         <br>
 
-        <label for="area">Em qual área do corpo você está sentindo o sintoma? (se aplicável):</label>
+        <label for="area">Área do corpo:</label>
         <input type="text" id="area" name="area" placeholder="Ex: cabeça, estômago">
         <br>
 
-        <label for="medicamento">Você está tomando ou já tomou algum medicamento para esse sintoma? Se sim, qual:</label>
+        <label for="medicamento">Medicamento:</label>
         <input type="text" id="medicamento" name="medicamento" placeholder="Descreva o medicamento">
         <br>
 
-        <label for="medico">Você já consultou algum médico sobre esse sintoma? Se sim, qual foi o diagnóstico ou recomendação?</label>
+        <label for="medico">Diagnóstico ou recomendação:</label>
         <input type="text" id="medico" name="medico" placeholder="Descreva o diagnóstico ou recomendação">
         <br>
 

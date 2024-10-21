@@ -174,26 +174,36 @@ def tecnicaspbemestar(request):
     return render(request, 'html/tecnicaspbemestar.html')
 
 def saude(request):
-    if request.method == 'POST':
-        sintoma = request.POST.get('sintoma')
-        intensidade = request.POST.get('intensidade')
-        area = request.POST.get('area')
-        medicamento = request.POST.get('medicamento')
-        medico = request.POST.get('medico')
+    if request.method == "POST":
+        sintoma = request.POST.get("sintoma")
+        intensidade = request.POST.get("intensidade")
+        area = request.POST.get("area")
+        medicamento = request.POST.get("medicamento")
+        medico = request.POST.get("medico")
 
-        RegistroSaude.objects.create(
-            sintoma=sintoma,
-            intensidade=intensidade,
-            area=area,
-            medicamento=medicamento,
-            medico=medico
-        )
-        return redirect('registrosaude')
+        if request.user.is_authenticated:
+            # Cria um novo registro de saúde se o usuário estiver autenticado
+            RegistroSaude.objects.create(
+                user=request.user,
+                sintoma=sintoma,
+                intensidade=intensidade,
+                area=area,
+                medicamento=medicamento,
+                medico=medico
+            )
+            return redirect('saude')  # Redireciona para a página de saúde após o registro
+        else:
+            return redirect('login')  # Redireciona para a página de login se não autenticado
 
-    return render(request, 'html/saude.html')
+    return render(request, 'html/saude.html')  # Retorna o formulário se não for um POST
 
 def registrosaude(request):
-    registros = RegistroSaude.objects.all().order_by('-data') 
+    if request.user.is_authenticated:
+        # Filtra os registros pelo usuário autenticado
+        registros = RegistroSaude.objects.filter(user=request.user).order_by('-data')
+    else:
+        registros = []  # Se o usuário não estiver autenticado, retorna uma lista vazia
+
     return render(request, 'html/registrosaude.html', {'registros': registros})
 
 def sono(request):

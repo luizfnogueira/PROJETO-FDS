@@ -27,26 +27,34 @@
         <h1>Registros de Saúde</h1>
         <p>Abaixo estão os registros de saúde que você enviou:</p>
 
+        {% if registros %}
         <table>
-            <tr>
-                <th>Data</th>
-                <th>Sintoma</th>
-                <th>Intensidade</th>
-                <th>Área</th>
-                <th>Medicamento</th>
-                <th>Médico</th>
-            </tr>
-            {% for registro in registros %}
-            <tr>
-                <td>{{ registro.data }}</td>
-                <td>{{ registro.sintoma }}</td>
-                <td>{{ registro.intensidade }}</td>
-                <td>{{ registro.area }}</td>
-                <td>{{ registro.medicamento }}</td>
-                <td>{{ registro.medico }}</td>
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Sintoma</th>
+                    <th>Intensidade</th>
+                    <th>Área</th>
+                    <th>Medicamento</th>
+                    <th>Médico</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in registros %}
+                <tr>
+                    <td>{{ registro.data }}</td>
+                    <td>{{ registro.sintoma }}</td>
+                    <td>{{ registro.intensidade }}</td>
+                    <td>{{ registro.area }}</td>
+                    <td>{{ registro.medicamento }}</td>
+                    <td>{{ registro.medico }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
+        {% else %}
+        <p>Nenhum registro encontrado.</p>
+        {% endif %}
 
         <a class="botao" href="{% url 'saude' %}">Voltar ao Formulário</a>
     </main>
