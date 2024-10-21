@@ -148,11 +148,11 @@ Marina Hoffmann Guimarães - mhg@cesar.school
   
 ### 📄 Jira sprint 3 
 
-  <img src="https://github.com/user-attachments/assets/9ac22c26-b3c1-4bd8-a0e1-9f3cf079cbe9)
-" alt="Repository Size">
-  <img src="https://github.com/user-attachments/assets/" alt="Repository Size">
-  <img src="https://github.com/user-attachments/assets/43007258-d366-4fa2-9155-599cba485a09)
-" alt="Repository Size">
+  <img src="https://github.com/user-attachments/assets/9ac22c26-b3c1-4bd8-a0e1-9f3cf079cbe9" alt="Repository Size">
+  <br>
+  <img src="https://github.com/user-attachments/assets/8253cb48-cb95-40d7-a337-f1935b0d06d5" alt="Repository Size">
+  <br>
+  <img src="https://github.com/user-attachments/assets/9fe04990-27a9-4345-b409-c69e7cd4639c" alt="Repository Size">
 
 <br>
   
