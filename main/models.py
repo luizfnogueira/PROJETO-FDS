@@ -86,6 +86,7 @@ class RegistroSaude(models.Model):
         return f"{self.sintoma} - {self.intensidade} por {self.user.username}"
     
 class Sono(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)  # Adicione null=True temporariamente
     horas_dormidas = models.IntegerField()
     qualidade_sono = models.IntegerField()
     meta_sono = models.TextField()

@@ -13,37 +13,58 @@
         <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
         <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
         <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
-        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
-        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
-        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="5">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="6">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="7">Sono</a>
 
-        <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
+            <button type="submit" tabindex="8" style="border:none; background:none; color:#000; cursor:pointer;">
                 Log out
             </button>
         </form>
     </nav>
 
-    <h1>Registro de Sono</h1>
-    <form id="sleepForm" method="post">
-        {% csrf_token %}
-        <label for="hours">Quantidade de horas dormidas:</label>
-        <input type="number" id="hours" name="hours" min="0" max="24" required>
-        <br>
+    <main>
+        <h1>Registro de Sono</h1>
+        
+        <form id="sleepForm" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="hours">Quantidade de horas dormidas:</label>
+                <input type="number" id="hours" name="hours" min="0" max="24" required>
+            </div>
 
-        <label for="quality">Qualidade do sono (nota de 1 a 10):</label>
-        <input type="number" id="quality" name="quality" min="1" max="10" required>
-        <br>
+            <div>
+                <label for="quality">Qualidade do sono (nota de 1 a 10):</label>
+                <input type="number" id="quality" name="quality" min="1" max="10" required>
+            </div>
 
-        <label for="goal">Meta para o sono:</label>
-        <textarea id="goal" name="goal" rows="3" required></textarea>
-        <br>
+            <div>
+                <label for="goal">Meta para o sono:</label>
+                <textarea id="goal" name="goal" rows="3" required></textarea>
+            </div>
 
-        <button type="submit">Salvar Registro</button>
-        <br>
-        <a class="botao" href="{% url 'horassono' %}">Ver registros de sono</a>
-    </form>
+            <button type="submit">Salvar Registro</button>
+        </form>
+
+        <h2>Meus Registros de Sono</h2>
+        <table>
+            <tr>
+                <th>Data</th>
+                <th>Horas Dormidas</th>
+                <th>Qualidade do Sono</th>
+                <th>Meta para o Sono</th>
+            </tr>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro.data_registro }}</td>
+                <td>{{ registro.horas_dormidas }}</td>
+                <td>{{ registro.qualidade_sono }}</td>
+                <td>{{ registro.meta_sono }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
 </body>
 </html>

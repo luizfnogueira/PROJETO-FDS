@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    text-align: center; /* Centraliza todo o texto no corpo da página */
 }
 
 /* Estilos do menu */
@@ -68,7 +69,6 @@ main {
 h1 {
     color: #4CAF50; /* Cor do título principal */
     font-size: 32px; /* Tamanho da fonte */
-    text-align: center; /* Centraliza o texto do h1 */
     margin: 20px 0; /* Margens superior e inferior */
 }
 
@@ -96,6 +96,7 @@ textarea {
     margin-top: 5px; /* Margem superior */
     border: 1px solid #ccc; /* Borda do campo */
     border-radius: 4px; /* Cantos arredondados */
+    text-align: center; /* Centraliza o texto dentro do campo */
 }
 
 button {
@@ -116,4 +117,28 @@ button:hover {
 h2 {
     color: #333; /* Cor do título secundário */
     margin-top: 20px; /* Margem superior */
+}
+
+/* Estiliza listas e tabelas */
+ul {
+    list-style-type: none; /* Remove a marcação da lista */
+    padding: 0; /* Remove o padding padrão */
+    text-align: center; /* Centraliza o texto na lista */
+}
+
+table {
+    margin: 20px auto; /* Centraliza a tabela */
+    border-collapse: collapse; /* Remove o espaço entre as bordas */
+    width: 100%; /* Largura da tabela */
+}
+
+th, td {
+    border: 1px solid #ddd; /* Borda da tabela */
+    padding: 8px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto na tabela */
+}
+
+th {
+    background-color: #4CAF50; /* Cor de fundo para o cabeçalho da tabela */
+    color: white; /* Cor do texto no cabeçalho */
 }

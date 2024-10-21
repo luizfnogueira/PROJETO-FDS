@@ -213,20 +213,32 @@ def horassono(request):
     return render(request, 'html/horassono.html')
 
 def sono(request):
-    if request.method == "POST":
-        horas_dormidas = int(request.POST.get('hours'))
-        qualidade_sono = int(request.POST.get('quality'))
+    if request.method == 'POST':
+        # Salvar o registro de sono
+        horas_dormidas = request.POST.get('hours')
+        qualidade_sono = request.POST.get('quality')
         meta_sono = request.POST.get('goal')
 
-        # Salvar no banco de dados
-        novo_registro = Sono(horas_dormidas=horas_dormidas, qualidade_sono=qualidade_sono, meta_sono=meta_sono)
+        # Cria um novo registro de sono
+        novo_registro = Sono(
+            user=request.user,  # Associa o registro ao usuário
+            horas_dormidas=horas_dormidas,
+            qualidade_sono=qualidade_sono,
+            meta_sono=meta_sono
+        )
         novo_registro.save()
 
-        return redirect('horassono')  # Redireciona para a página de visualização
+        return redirect('sono')  # Redireciona para a página de registro
 
-    return render(request, 'html/sono.html')
+    # Obtém os registros de sono do usuário autenticado
+    registros = Sono.objects.filter(user=request.user).order_by('-data_registro')
+    return render(request, 'html/sono.html', {'registros': registros})
+
 
 def horassono(request):
-    registros = Sono.objects.all().order_by('-data_registro')  # Exibe os registros mais recentes primeiro
-    return render(request, 'html/horassono.html', {'registros': registros})
+    if request.user.is_authenticated:
+        registros = Sono.objects.filter(user=request.user).order_by('-data_registro')
+    else:
+        registros = []
 
+    return render(request, 'html/horassono.html', {'registros': registros})
