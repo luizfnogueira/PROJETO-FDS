@@ -145,6 +145,12 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 
 <details>
 <summary>📧 Entrega 3</summary>
+### 📄 Jira sprint 2 
+
+  <img src=""C:\Users\Marin\Downloads\WhatsApp Image 2024-10-20 at 17.41.10.jpeg"" alt="Repository Size">
+
+<br>
+  
 </details>
 
 <details>
