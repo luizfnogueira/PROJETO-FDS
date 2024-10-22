@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/horassono.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Sono - Exibição</title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="5">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="6">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="7">Sono</a>
+
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="8" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+
+    <h1>Registro de Sono - Exibição</h1>
+    
+    <div>
+        <h2>Registros de Sono</h2>
+        <ul>
+            {% for registro in registros %}
+                <li>
+                    <strong>Horas dormidas:</strong> {{ registro.horas_dormidas }} <br>
+                    <strong>Qualidade do sono:</strong> {{ registro.qualidade_sono }} <br>
+                    <strong>Meta:</strong> {{ registro.meta_sono }} <br>
+                    <strong>Data:</strong> {{ registro.data_registro|date:"d/m/Y H:i" }} <br>
+                </li>
+            {% empty %}
+                <li>Nenhum registro encontrado.</li>
+            {% endfor %}
+        </ul>
+        <a class="botao" href="{% url 'sono' %}">Voltar para o registro</a>
+    </div>
+</body>
+</html>

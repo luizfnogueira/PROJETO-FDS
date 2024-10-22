@@ -20,7 +20,7 @@ nav.menu {
 
 /* Estilo comum para links e botões no menu */
 nav.menu a,
-nav.menu button.logout-btn {
+nav.menu button {
     color: white;
     text-decoration: none;
     font-size: 18px;
@@ -35,24 +35,23 @@ nav.menu button.logout-btn {
 
 /* Hover para links e botão de logout */
 nav.menu a:hover,
-nav.menu button.logout-btn:hover {
+nav.menu button:hover {
     color: #e0e0e0;
 }
 
 /* Estilo específico para o botão de logout */
-nav.menu button.logout-btn {
+nav.menu button {
     background-color: #4CAF50;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.2s;
 }
 
-
 /* Efeitos de hover e clique para o botão de logout */
-nav.menu button.logout-btn:hover {
+nav.menu button:hover {
     background-color: #FF4500;
 }
 
-nav.menu button.logout-btn:active {
+nav.menu button:active {
     background-color: #FF3300;
     transform: scale(0.95);
 }
@@ -64,17 +63,18 @@ main {
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Centraliza o texto no main */
 }
 
 h1 {
     color: #4CAF50;
     font-size: 32px;
+    text-align: center; /* Centraliza o título h1 */
 }
 
 p {
     font-size: 18px;
     line-height: 1.6;
+    text-align: center;
 }
 
 form {
@@ -93,16 +93,17 @@ label {
     font-size: 18px;
 }
 
-input[type="number"] {
+input[type="text"], 
+select {
     padding: 10px;
     font-size: 16px;
-    width: 200px;
+    width: 300px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-button {
+input[type="submit"] {
     padding: 10px 20px;
     font-size: 18px;
     color: white;
@@ -113,7 +114,7 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #45a049;
 }
 

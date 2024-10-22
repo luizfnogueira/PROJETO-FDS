@@ -20,7 +20,7 @@ nav.menu {
 
 /* Estilo comum para links e botões no menu */
 nav.menu a,
-nav.menu button.logout-btn {
+nav.menu button {
     color: white;
     text-decoration: none;
     font-size: 18px;
@@ -35,24 +35,23 @@ nav.menu button.logout-btn {
 
 /* Hover para links e botão de logout */
 nav.menu a:hover,
-nav.menu button.logout-btn:hover {
+nav.menu button:hover {
     color: #e0e0e0;
 }
 
 /* Estilo específico para o botão de logout */
-nav.menu button.logout-btn {
+nav.menu button {
     background-color: #4CAF50;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.2s;
 }
 
-
 /* Efeitos de hover e clique para o botão de logout */
-nav.menu button.logout-btn:hover {
+nav.menu button:hover {
     background-color: #FF4500;
 }
 
-nav.menu button.logout-btn:active {
+nav.menu button:active {
     background-color: #FF3300;
     transform: scale(0.95);
 }
@@ -77,47 +76,19 @@ p {
     line-height: 1.6;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-form div {
-    margin-bottom: 15px;
-    text-align: center; /* Centraliza os textos dentro do form */
-}
-
-label {
-    font-size: 18px;
-}
-
-input[type="number"] {
-    padding: 10px;
-    font-size: 16px;
-    width: 200px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
+.botao {
+    display: inline-block;
     padding: 10px 20px;
     font-size: 18px;
     color: white;
     background-color: #4CAF50;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
+    text-decoration: none;
     transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-h2 {
-    color: #333;
     margin-top: 20px;
+}
+
+.botao:hover {
+    background-color: #45a049;
 }

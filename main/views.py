@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC, Treino, Exercicio
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono
 from datetime import date
+
 
 
 def paginainicial(request):
@@ -48,7 +49,7 @@ def cadastro(request):
     return render(request, 'html/cadastro.html')
 
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -134,3 +135,110 @@ def remover_treino(request, treino_id):
     treino.delete()
 
     return redirect('meustreinos')
+
+def sentimento(request):
+    if request.method == 'POST':
+        atividade_texto = request.POST['atividade']
+        sentimento_texto = request.POST['sentimento']
+        usuario = request.user
+
+        # Verifica se a atividade já existe, senão cria uma nova
+        atividade, created = Atividade.objects.get_or_create(nome=atividade_texto)
+
+        # Criar um novo registro de sentimento
+        sentimento = Sentimento.objects.create(usuario=usuario, atividade=atividade, sentimento=sentimento_texto)
+        sentimento.save()
+
+        # Mensagem de sucesso
+        messages.success(request, 'Seu sentimento foi registrado com sucesso!')
+
+        return redirect('sentimento')  # Redirecionar para a mesma página
+
+    return render(request, 'html/sentimento.html')
+
+def historico_humor(request):
+    # Busca todos os registros de sentimento do usuário
+    registros = Sentimento.objects.filter(usuario=request.user).select_related('atividade').order_by('-data')
+    return render(request, 'html/historicohumor.html', {'registros': registros})
+
+def alongamento(request):
+    return render(request, 'html/alongamento.html')
+
+def relaxamentomuscular(request):
+    return render(request, 'html/relaxamentomuscular.html')
+
+def respiracaoguiada(request):
+    return render(request, 'html/respiracaoguiada.html')
+
+def tecnicaspbemestar(request):
+    return render(request, 'html/tecnicaspbemestar.html')
+
+def saude(request):
+    if request.method == "POST":
+        sintoma = request.POST.get("sintoma")
+        intensidade = request.POST.get("intensidade")
+        area = request.POST.get("area")
+        medicamento = request.POST.get("medicamento")
+        medico = request.POST.get("medico")
+
+        if request.user.is_authenticated:
+            # Cria um novo registro de saúde se o usuário estiver autenticado
+            RegistroSaude.objects.create(
+                user=request.user,
+                sintoma=sintoma,
+                intensidade=intensidade,
+                area=area,
+                medicamento=medicamento,
+                medico=medico
+            )
+            return redirect('saude')  # Redireciona para a página de saúde após o registro
+        else:
+            return redirect('login')  # Redireciona para a página de login se não autenticado
+
+    return render(request, 'html/saude.html')  # Retorna o formulário se não for um POST
+
+def registrosaude(request):
+    if request.user.is_authenticated:
+        # Filtra os registros pelo usuário autenticado
+        registros = RegistroSaude.objects.filter(user=request.user).order_by('-data')
+    else:
+        registros = []  # Se o usuário não estiver autenticado, retorna uma lista vazia
+
+    return render(request, 'html/registrosaude.html', {'registros': registros})
+
+def sono(request):
+    return render(request, 'html/sono.html')
+
+def horassono(request):
+    return render(request, 'html/horassono.html')
+
+def sono(request):
+    if request.method == 'POST':
+        # Salvar o registro de sono
+        horas_dormidas = request.POST.get('hours')
+        qualidade_sono = request.POST.get('quality')
+        meta_sono = request.POST.get('goal')
+
+        # Cria um novo registro de sono
+        novo_registro = Sono(
+            user=request.user,  # Associa o registro ao usuário
+            horas_dormidas=horas_dormidas,
+            qualidade_sono=qualidade_sono,
+            meta_sono=meta_sono
+        )
+        novo_registro.save()
+
+        return redirect('sono')  # Redireciona para a página de registro
+
+    # Obtém os registros de sono do usuário autenticado
+    registros = Sono.objects.filter(user=request.user).order_by('-data_registro')
+    return render(request, 'html/sono.html', {'registros': registros})
+
+
+def horassono(request):
+    if request.user.is_authenticated:
+        registros = Sono.objects.filter(user=request.user).order_by('-data_registro')
+    else:
+        registros = []
+
+    return render(request, 'html/horassono.html', {'registros': registros})

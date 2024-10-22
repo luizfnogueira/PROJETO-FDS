@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/saude.css' %}">
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'hidratacao' %}">Hidratação</a>
+        <a href="{% url 'meupeso' %}">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}">Meus Treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}">Bem-estar</a>
+        <a href="{% url 'saude' %}">Saúde</a>
+        <a href="{% url 'sono' %}">Sono</a>
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Log out</button>
+        </form>
+    </nav>
+
+    <h1>Olá!</h1>
+    <p>Para personalizar a melhor abordagem para o seu bem-estar, gostaríamos de saber mais sobre sua situação. Você pode nos ajudar respondendo às seguintes perguntas?</p>
+
+    <form action="{% url 'saude' %}" method="post">
+        {% csrf_token %}
+        <label for="sintoma">Sintoma:</label>
+        <input type="text" id="sintoma" name="sintoma" placeholder="Descreva seu sintoma">
+        <br>
+
+        <label for="intensidade">Intensidade:</label>
+        <select id="intensidade" name="intensidade">
+            <option value="leve">Leve</option>
+            <option value="moderada">Moderada</option>
+            <option value="intensa">Intensa</option>
+        </select>
+        <br>
+
+        <label for="area">Área do corpo:</label>
+        <input type="text" id="area" name="area" placeholder="Ex: cabeça, estômago">
+        <br>
+
+        <label for="medicamento">Medicamento:</label>
+        <input type="text" id="medicamento" name="medicamento" placeholder="Descreva o medicamento">
+        <br>
+
+        <label for="medico">Diagnóstico ou recomendação:</label>
+        <input type="text" id="medico" name="medico" placeholder="Descreva o diagnóstico ou recomendação">
+        <br>
+
+        <input type="submit" value="Registrar">
+        <br>
+        <a class="botao" href="{% url 'registrosaude' %}">Ver registros</a>
+    </form>
+</body>
+</html>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -55,3 +56,41 @@ class Exercicio(models.Model):
 
     def str(self):
         return f"{self.nome} - {self.series} séries de {self.repeticoes} repetições"
+
+class Atividade(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return self.nome
+
+class Sentimento(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE)
+    sentimento = models.CharField(max_length=100)
+    data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.usuario} - {self.atividade} - {self.sentimento}"
+
+class RegistroSaude(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Relaciona o registro ao usuário
+    sintoma = models.CharField(max_length=255, blank=True, null=True)
+    intensidade = models.CharField(max_length=50)
+    area = models.CharField(max_length=255, blank=True, null=True)
+    medicamento = models.CharField(max_length=255, blank=True, null=True)
+    medico = models.CharField(max_length=255, blank=True, null=True)
+    data = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.sintoma} - {self.intensidade} por {self.user.username}"
+    
+class Sono(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)  # Adicione null=True temporariamente
+    horas_dormidas = models.IntegerField()
+    qualidade_sono = models.IntegerField()
+    meta_sono = models.TextField()
+    data_registro = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Sono: {self.horas_dormidas} horas, Qualidade: {self.qualidade_sono}"

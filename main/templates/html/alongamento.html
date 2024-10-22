@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alongamento</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/alongamento.css' %}">
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+    <h1>Alongamento para Relaxar os Músculos</h1>
+    <h2>1.Pescoço:</h2>
+    <p>Incline a cabeça para a direita, levando a orelha em direção ao ombro. Mantenha por 15-30 segundos. Troque para o lado esquerdo.</p>
+    <br>
+    <h2>2.Ombros:</h2>
+    <p>Eleve os ombros em direção às orelhas e depois solte-os para baixo. Repita 5 vezes. Depois, faça um alongamento cruzando o braço direito sobre o peito e segurando com o braço esquerdo. Mantenha por 15-30 segundos e troque de lado.</p>
+    <br>
+    <h2>3.Braços:</h2>
+    <p>Estenda o braço direito acima da cabeça, dobre o cotovelo e coloque a mão nas costas. Use a mão esquerda para empurrar suavemente o cotovelo. Mantenha por 15-30 segundos e troque de lado.</p>
+    <br>
+    <h2>4.Costas:</h2>
+    <p>Sente-se e entrelace os dedos à frente do corpo, empurrando as mãos para longe. Mantenha a posição por 15-30 segundos.</p>
+    <br>
+    <h2>5.Cintura:</h2>
+    <p>Em pé, coloque as mãos na cintura e faça movimentos circulares com o quadril, 5 vezes para cada lado.</p>
+    <br>
+    <h2>6.Pernas:</h2>
+    <p>Em pé, pegue o pé direito com a mão direita e puxe suavemente em direção às nádegas. Mantenha por 15-30 segundos e troque de lado.</p>
+    <br>
+    <h2>7.Panturrilhas:</h2>
+    <p>Apoie as mãos em uma parede e dê um passo para trás com uma perna, mantendo o calcanhar no chão. Mantenha por 15-30 segundos e troque de perna.</p>
+    <br>
+    <h2>8.Corpo inteiro:</h2>
+    <p>Em pé, estique os braços para cima, entrelaçando os dedos. Alongue-se para cima por 15-30 segundos, respirando profundamente.</p>
+    <br>
+    <h2>Dicas:</h2>
+    <p>Respire profundamente durante cada alongamento.
+        <br>
+        Não force os movimentos; o objetivo é relaxar, não causar dor.
+        <br>
+        Tente fazer essa sequência diariamente para melhores resultados!</p>
+        <br>
+        <a href="{% url 'sentimento' %}">Realizou a prática? registre suas considerações! </a>
+    
+</body>
+</html>

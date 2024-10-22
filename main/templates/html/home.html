@@ -10,38 +10,34 @@
 </head>
 <body>
     <nav class="menu">
-        <a href="{% url 'home' %}" tabindex="1"><i class="fas fa-house"></i> Home</a>
-        <a href="{% url 'hidratacao' %}" tabindex="2"><i class="fas fa-water"></i> Hidratação</a>
-        <a href="{% url 'meupeso' %}" tabindex="3"><i class="fas fa-weight"></i> Meu peso</a>
-        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
 
         <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" tabindex="6" style="border:none; background:none; color:#000; cursor:pointer;">
+            <button type="submit" tabindex="4" class="logout-btn">
                 <i class="fas fa-sign-out-alt"></i> Log out
             </button>
         </form>
     </nav>
-
     <main>
         <section>
             <h1>Bem-vindo ao FORTIS!</h1>
-
-            <p>Aqui você pode gerenciar sua saúde, manter-se hidratado e acompanhar seus treinos!</p>
-            <br>
-            
-            <h2>Funcionalidades:</h2>
+            <p>Aqui, temos diversas funções para auxiliar sua saúde:</p>
             <ul>
-                <li><a href="{% url 'hidratacao' %}"><i class="fas fa-water"></i> Registro de Hidratação</a></li>
-                <li><a href="{% url 'historicohidratacao' %}"><i class="fas fa-history"></i> Histórico de Hidratação</a></li>
-                <li><a href="{% url 'meupeso' %}"><i class="fas fa-weight"></i> Meu Peso</a></li>
-                <li><a href="{% url 'meustreinos' %}"><i class="fas fa-dumbbell"></i> Meus Treinos</a></li>
+                <p>Página de Hidratação: para ajudá-lo a se manter hidratado ao longo do dia.</p>
+                <p>Página Meu Peso: que auxilia no cálculo do IMC para manter um peso ideal.</p>
+                <p>Página Meus Treinos: onde você pode armazenar seus treinos para mais facilidade.</p>
+                <p>Página Bem-Estar: com três modelos de atividades propostas para você se sentir melhor e a opção de monitorá-las.</p>
+                <p>Página Saúde: onde você registra suas condições físicas para auxiliar nas consultas médicas e no monitoramento a longo prazo.</p>
+                <p>Página Sono: onde você pode monitorar e criar metas para melhorar a qualidade do seu sono.</p>
             </ul>
-
-            <h2>Gerenciamento de Hidratação:</h2>
-            <p>Registre sua ingestão diária de água e acompanhe seu histórico de hidratação.</p>
-            <br>
         </section>
     </main>
 </body>

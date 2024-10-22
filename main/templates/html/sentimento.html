@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sentimento.css' %}">
+    <meta charset="UTF-8">
+    <title>Registro de Humor</title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+
+    <main>
+        <section>
+            <h1>Registro de Humor</h1>
+
+            {% if mensagem %}
+                <div class="mensagem">{{ mensagem }}</div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                
+                <!-- Campo para atividade -->
+                <label for="atividade">Qual prática você realizou?</label>
+                <input type="text" name="atividade" id="atividade" required placeholder="Ex: Alongamento"><br><br>
+                
+                <!-- Campo para sentimento -->
+                <label for="sentimento">Como você se sente após a prática?</label>
+                <textarea name="sentimento" id="sentimento" required placeholder="Descreva seu sentimento aqui..." rows="4" cols="50"></textarea><br><br>
+
+                <button type="submit">Registrar Humor</button>
+                <br>
+            </form>
+
+            <a class="botao" href="{% url 'historicohumor' %}">Ver Histórico de Humor</a>
+        </section>
+    </main>
+</body>
+</html>

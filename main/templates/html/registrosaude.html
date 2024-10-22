@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros de Saúde</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/registrosaude.css' %}">
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4">Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="5">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="6">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="7">Log out</button>
+        </form>
+    </nav>
+
+    <main>
+        <h1>Registros de Saúde</h1>
+        <p>Abaixo estão os registros de saúde que você enviou:</p>
+
+        {% if registros %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Sintoma</th>
+                    <th>Intensidade</th>
+                    <th>Área</th>
+                    <th>Medicamento</th>
+                    <th>Médico</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in registros %}
+                <tr>
+                    <td>{{ registro.data }}</td>
+                    <td>{{ registro.sintoma }}</td>
+                    <td>{{ registro.intensidade }}</td>
+                    <td>{{ registro.area }}</td>
+                    <td>{{ registro.medicamento }}</td>
+                    <td>{{ registro.medico }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Nenhum registro encontrado.</p>
+        {% endif %}
+
+        <a class="botao" href="{% url 'saude' %}">Voltar ao Formulário</a>
+    </main>
+</body>
+</html>

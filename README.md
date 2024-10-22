@@ -145,6 +145,34 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 
 <details>
 <summary>📧 Entrega 3</summary>
+  
+### 📄 Jira sprint 3 
+
+  <img src="https://github.com/user-attachments/assets/07027a78-5846-4855-b287-03cf1548da47" alt="Repository Size">
+  <br>
+  <img src="https://github.com/user-attachments/assets/13531bf4-e9d0-4938-8df4-eaeb176ee839" alt="Repository Size">
+  <br>
+  <img src="https://github.com/user-attachments/assets/4dd4cf12-5e07-4f6d-8437-a95dae71c54e" alt="Repository Size">
+  <br>
+  
+  ### 📄 Jira Backlog
+
+  <img src="https://github.com/user-attachments/assets/123d5bfe-9b32-499d-b73c-00f9c18e6966" alt="Repository Size">
+  <br>
+  
+  ### 📄 Prototipação Lo-Fi
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://www.figma.com/design/Vo7Jd6HeI0TCrXF3rnj5kF/FORTIS?node-id=0-1&t=AL28ZR4ofulLp0Oe-1" style="text-decoration: none;">
+    <span>🔗 Figma</span>
+  </a>
+</p>
+
+<br>
+  
+
+<br>
+  
 </details>
 
 <details>
