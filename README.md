@@ -180,6 +180,17 @@ Marina Hoffmann Guimarães - mhg@cesar.school
   
 
 <br>
+
+### Link da Azure
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="http://fortisapp.azurewebsites.net/" style="text-decoration: none;">
+    <span>🔗 Link </span>
+  </a>
+</p>
+  
+
+<br>
   
 </details>
 
