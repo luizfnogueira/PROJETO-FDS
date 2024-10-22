@@ -169,6 +169,14 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 </p>
 
 <br>
+
+### 🎥 Screencast
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/vZGONPy42iQ" style="text-decoration: none;">
+    <span>🔗 Screencast com ênfase nas novas histórias</span>
+  </a>
+</p>
   
 
 <br>
