@@ -15,3 +15,7 @@ Arquivos de configurações do IDE/editor
 
 Arquivos de mídia e uploads (se você estiver armazenando no projeto)
 media/
+
+Testes automatizados node.js
+node_modules/
+*.json
