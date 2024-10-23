@@ -74,6 +74,7 @@ class Sentimento(models.Model):
         return f"{self.usuario} - {self.atividade} - {self.sentimento}"
 
 class RegistroSaude(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Relaciona o registro ao usuário
     sintoma = models.CharField(max_length=255, blank=True, null=True)
     intensidade = models.CharField(max_length=50)
     area = models.CharField(max_length=255, blank=True, null=True)
@@ -82,9 +83,10 @@ class RegistroSaude(models.Model):
     data = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.sintoma} - {self.intensidade}"
+        return f"{self.sintoma} - {self.intensidade} por {self.user.username}"
     
 class Sono(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)  # Adicione null=True temporariamente
     horas_dormidas = models.IntegerField()
     qualidade_sono = models.IntegerField()
     meta_sono = models.TextField()

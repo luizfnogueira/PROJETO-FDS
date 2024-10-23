@@ -146,9 +146,14 @@ a {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
-    text-decoration: none;
+    text-decoration: underline;
     border-radius: 5px;
     transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #45a049;
+    text-decoration: underline; /* Mantém o sublinhado ao passar o mouse */
 }
 
 br {

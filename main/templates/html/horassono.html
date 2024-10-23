@@ -13,14 +13,13 @@
         <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
         <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
         <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
-        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
-        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
-        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="5">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="6">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="7">Sono</a>
 
-        <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
+            <button type="submit" tabindex="8" style="border:none; background:none; color:#000; cursor:pointer;">
                 Log out
             </button>
         </form>

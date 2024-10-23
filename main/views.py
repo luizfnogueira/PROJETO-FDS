@@ -174,26 +174,36 @@ def tecnicaspbemestar(request):
     return render(request, 'html/tecnicaspbemestar.html')
 
 def saude(request):
-    if request.method == 'POST':
-        sintoma = request.POST.get('sintoma')
-        intensidade = request.POST.get('intensidade')
-        area = request.POST.get('area')
-        medicamento = request.POST.get('medicamento')
-        medico = request.POST.get('medico')
+    if request.method == "POST":
+        sintoma = request.POST.get("sintoma")
+        intensidade = request.POST.get("intensidade")
+        area = request.POST.get("area")
+        medicamento = request.POST.get("medicamento")
+        medico = request.POST.get("medico")
 
-        RegistroSaude.objects.create(
-            sintoma=sintoma,
-            intensidade=intensidade,
-            area=area,
-            medicamento=medicamento,
-            medico=medico
-        )
-        return redirect('registrosaude')
+        if request.user.is_authenticated:
+            # Cria um novo registro de saúde se o usuário estiver autenticado
+            RegistroSaude.objects.create(
+                user=request.user,
+                sintoma=sintoma,
+                intensidade=intensidade,
+                area=area,
+                medicamento=medicamento,
+                medico=medico
+            )
+            return redirect('saude')  # Redireciona para a página de saúde após o registro
+        else:
+            return redirect('login')  # Redireciona para a página de login se não autenticado
 
-    return render(request, 'html/saude.html')
+    return render(request, 'html/saude.html')  # Retorna o formulário se não for um POST
 
 def registrosaude(request):
-    registros = RegistroSaude.objects.all().order_by('-data') 
+    if request.user.is_authenticated:
+        # Filtra os registros pelo usuário autenticado
+        registros = RegistroSaude.objects.filter(user=request.user).order_by('-data')
+    else:
+        registros = []  # Se o usuário não estiver autenticado, retorna uma lista vazia
+
     return render(request, 'html/registrosaude.html', {'registros': registros})
 
 def sono(request):
@@ -203,20 +213,32 @@ def horassono(request):
     return render(request, 'html/horassono.html')
 
 def sono(request):
-    if request.method == "POST":
-        horas_dormidas = int(request.POST.get('hours'))
-        qualidade_sono = int(request.POST.get('quality'))
+    if request.method == 'POST':
+        # Salvar o registro de sono
+        horas_dormidas = request.POST.get('hours')
+        qualidade_sono = request.POST.get('quality')
         meta_sono = request.POST.get('goal')
 
-        # Salvar no banco de dados
-        novo_registro = Sono(horas_dormidas=horas_dormidas, qualidade_sono=qualidade_sono, meta_sono=meta_sono)
+        # Cria um novo registro de sono
+        novo_registro = Sono(
+            user=request.user,  # Associa o registro ao usuário
+            horas_dormidas=horas_dormidas,
+            qualidade_sono=qualidade_sono,
+            meta_sono=meta_sono
+        )
         novo_registro.save()
 
-        return redirect('horassono')  # Redireciona para a página de visualização
+        return redirect('sono')  # Redireciona para a página de registro
 
-    return render(request, 'html/sono.html')
+    # Obtém os registros de sono do usuário autenticado
+    registros = Sono.objects.filter(user=request.user).order_by('-data_registro')
+    return render(request, 'html/sono.html', {'registros': registros})
+
 
 def horassono(request):
-    registros = Sono.objects.all().order_by('-data_registro')  # Exibe os registros mais recentes primeiro
-    return render(request, 'html/horassono.html', {'registros': registros})
+    if request.user.is_authenticated:
+        registros = Sono.objects.filter(user=request.user).order_by('-data_registro')
+    else:
+        registros = []
 
+    return render(request, 'html/horassono.html', {'registros': registros})
