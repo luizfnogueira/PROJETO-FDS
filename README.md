@@ -135,7 +135,7 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 
 <p style="text-align: center; text-decoration: none;">
   <a href="https://www.youtube.com/watch?v=F6OezYXLEes" style="text-decoration: none;">
-    <span>🔗 Screencast do uso do sistema)</span>
+    <span>🔗 Screencast do uso do sistema</span>
   </a>
 </p>
 
@@ -159,6 +159,16 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 
   <img src="https://github.com/user-attachments/assets/123d5bfe-9b32-499d-b73c-00f9c18e6966" alt="Repository Size">
   <br>
+  
+  ### 🎥 Screencast do protótipo
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/c3wc2SM_Ez4" style="text-decoration: none;">
+    <span>🔗 Screencast do FIGMA</span>
+  </a>
+</p>
+
+<br>
   
   ### 📄 Prototipação Lo-Fi
 
