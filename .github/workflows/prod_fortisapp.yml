@@ -28,13 +28,32 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
+        cd PROJETO-FDS
         run: pip install -r requirements.txt
+        npm ci
+        cd ..
+
+      - name: Run local server
+        run: |
+          cd PROJETO-FDS
+          python manage.py migrate
+          python manage.py runserver &
+          sleep 5
+          npx cypress run
 
       - name: Cleaning testing files
         run: |
+          cd PROJETO-FDS/
           rm db.sqlite3
           rm .env
           cd ..
+          rm cypress.config.js
+          rm package-lock.json
+          rm package.json
+          rm -rf cypress
+          rm -rf node_modules
+          cd ..
+
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
