@@ -44,11 +44,6 @@ jobs:
         run: |
           rm db.sqlite3
           rm .env
-          rm cypress.config.js
-          rm package-lock.json
-          rm package.json
-          rm -rf cypress
-          rm -rf node_modules
           cd ..
 
         
