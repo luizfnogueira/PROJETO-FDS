@@ -163,7 +163,7 @@ Marina Hoffmann Guimarães - mhg@cesar.school
   ### 🎥 Screencast do protótipo
 
 <p style="text-align: center; text-decoration: none;">
-  <a href="https://youtu.be/c3wc2SM_Ez4" style="text-decoration: none;">
+  <a href="https://youtu.be/oEApqhxcVEI" style="text-decoration: none;">
     <span>🔗 Screencast do FIGMA</span>
   </a>
 </p>
