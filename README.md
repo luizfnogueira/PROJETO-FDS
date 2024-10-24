@@ -187,8 +187,17 @@ Marina Hoffmann Guimarães - mhg@cesar.school
     <span>🔗 Screencast com ênfase nas novas histórias</span>
   </a>
 </p>
-  
 
+<br>
+
+### 🎥 Screencast dos testes automatizados
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/vZGONPy42iQ" style="text-decoration: none;">
+    <span>🔗 Screencast no cypress</span>
+  </a>
+</p>
+  
 <br>
 
 ### Link da Azure
