@@ -193,7 +193,7 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 ### 🎥 Screencast dos testes automatizados
 
 <p style="text-align: center; text-decoration: none;">
-  <a href="https://youtu.be/vZGONPy42iQ" style="text-decoration: none;">
+  <a href="https://www.youtube.com/watch?v=eHG4vvYfCYc" style="text-decoration: none;">
     <span>🔗 Screencast no cypress</span>
   </a>
 </p>
