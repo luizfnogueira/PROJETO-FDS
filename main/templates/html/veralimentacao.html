@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Técnicas para bem-estar</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/tecnicas.css' %}">
+    <title>Ver alimentação</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/veralimentacao.css' %}">
 </head>
 <body>
     <nav class="menu">
@@ -26,22 +26,21 @@
             </button>
         </form>
     </nav>
-    <h1>Bem-vindo à seção de técnicas de bem-estar do app! Aqui, você pode escolher entre três opções poderosas para melhorar sua saúde e relaxamento.</h1>
-    <br>
-    <p>A respiração guiada ajuda a acalmar a mente o corpo através de exercícios respiratórios estruturado, promovendo um estado de tranquilidade e foco.</p>
-    <br>
-    <p>O relaxamento muscular foca na liberação da tensão física, auxiliando na redução do estresse e na melhora da flexibilidade.</p>
-    <br>
-    <p>O alongamento melhora a flexibilidade e a mobilidade das suas articulações, o que pode reduzir o risco de lesões e melhorar sua performance física.</p>
-    <br>
-    <label>Selecione a técnica que mais se adapta às suas necessidades:</label>
-    <br>
+    <main>
+        <h1>Aqui está seu cardápio sugerido</h1>
+        
+        <h2>Cardápio</h2>
+        <div class="cardapio">
+            
+        </div>
 
-    <a href="{% url 'alongamento' %}">Alongamento</a>
-    <br>
-    <a href="{% url 'respiracaoguiada' %}">Respiração guiada</a>
-    <br>
-    <a href="{% url 'relaxamentomuscular' %}">Relaxamento muscular</a>
+        <h2>Preferências / Restrições</h2>
+        <div class="preferencias-restricoes">
+            <p><strong>Preferências Alimentares:</strong> {{ preferencias }}</p>
+            <p><strong>Restrições:</strong> {{ restricoes }}</p>
+            <p><strong>Objetivos:</strong> {{ objetivos }}</p>
+        </div>
+    </main>
 
 </body>
 </html>

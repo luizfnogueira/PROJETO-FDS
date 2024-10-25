@@ -242,3 +242,9 @@ def horassono(request):
         registros = []
 
     return render(request, 'html/horassono.html', {'registros': registros})
+
+def alimentacao(request):
+    return render(request, 'html/alimentacao.html')
+
+def veralimentacao(request):
+    return render(request, 'html/veralimentacao.html')

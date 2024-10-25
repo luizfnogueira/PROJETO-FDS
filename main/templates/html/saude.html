@@ -16,6 +16,8 @@
         <a href="{% url 'tecnicaspbemestar' %}">Bem-estar</a>
         <a href="{% url 'saude' %}">Saúde</a>
         <a href="{% url 'sono' %}">Sono</a>
+        <a href="{% url 'alimentacao' %}" tabindex="9">Alimentação</a>
+        
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
             <button type="submit">Log out</button>
