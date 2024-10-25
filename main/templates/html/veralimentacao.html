@@ -26,14 +26,27 @@
             </button>
         </form>
     </nav>
-    <main>
-        <h1>Aqui está seu cardápio sugerido</h1>
-        
-        <h2>Cardápio</h2>
-        <div class="cardapio">
-            
-        </div>
 
+    <main>
+        <h1>Cardápio Sugerido</h1>
+        
+        <!-- Exibindo sugestões de pratos por refeição -->
+        <h2>Café da Manhã</h2>
+        <p>{{ sugestoes.cafe_da_manha }}</p>
+
+        <h2>Almoço</h2>
+        <p>{{ sugestoes.almoco }}</p>
+
+        <h2>Café da Tarde</h2>
+        <p>{{ sugestoes.cafe_da_tarde }}</p>
+
+        <h2>Jantar</h2>
+        <p>{{ sugestoes.jantar }}</p>
+
+        <h2>Ceia</h2>
+        <p>{{ sugestoes.ceia }}</p>
+
+        <!-- Exibindo preferências, restrições e objetivos -->
         <h2>Preferências / Restrições</h2>
         <div class="preferencias-restricoes">
             <p><strong>Preferências Alimentares:</strong> {{ preferencias }}</p>
@@ -41,6 +54,5 @@
             <p><strong>Objetivos:</strong> {{ objetivos }}</p>
         </div>
     </main>
-
 </body>
 </html>

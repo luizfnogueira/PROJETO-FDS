@@ -94,3 +94,11 @@ class Sono(models.Model):
 
     def __str__(self):
         return f"Sono: {self.horas_dormidas} horas, Qualidade: {self.qualidade_sono}"
+    
+class Alimentacao(models.Model):
+    preferencias = models.TextField()
+    restricoes = models.TextField()
+    objetivos = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return f"Objetivo: {self.objetivos}"

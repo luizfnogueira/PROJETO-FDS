@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono, Alimentacao
 from datetime import date
 
 
@@ -243,8 +243,154 @@ def horassono(request):
 
     return render(request, 'html/horassono.html', {'registros': registros})
 
-def alimentacao(request):
+def alimentacao_view(request):
+    if request.method == "POST":
+        preferencias = request.POST.getlist("preferencias")  # Captura múltiplos valores de preferência
+        restricoes = request.POST.getlist("restricoes")      # Captura múltiplos valores de restrições
+        objetivos = request.POST.get("objetivos", "")
+
+        # Armazenar as informações no banco de dados
+        Alimentacao.objects.create(
+            preferencias=", ".join(preferencias),  # Salva como string separada por vírgulas
+            restricoes=", ".join(restricoes),
+            objetivos=objetivos
+        )
+        
+        return redirect('veralimentacao')  # Redireciona para a página de visualização
+
     return render(request, 'html/alimentacao.html')
 
-def veralimentacao(request):
-    return render(request, 'html/veralimentacao.html')
+
+def veralimentacao_view(request):
+    ultima_alimentacao = Alimentacao.objects.last()
+
+    # Obter preferências, restrições e objetivos do usuário
+    restricoes = ultima_alimentacao.restricoes.split(", ") if ultima_alimentacao else []
+    preferencias = ultima_alimentacao.preferencias if ultima_alimentacao else ""
+    objetivo = ultima_alimentacao.objetivos if ultima_alimentacao else ""
+
+    # Pratos sugeridos para cada refeição e caso específico
+    sugestoes = {
+        "cafe_da_manha": {
+            "vegano": {
+                "hipertrofia": "Pão integral com pasta de amendoim e uma vitamina de frutas com aveia",
+                "emagrecimento": "Smoothie de espinafre, banana e aveia com chia",
+                "ganho de massa": "Panquecas de aveia e banana com creme de amêndoas",
+                "manutencao": "Pão integral com abacate e uma salada de frutas"
+            },
+            "vegetariano": {
+                "hipertrofia": "Omelete de claras com espinafre e queijo cottage",
+                "emagrecimento": "Iogurte com frutas vermelhas e uma fatia de pão integral",
+                "ganho de massa": "Iogurte grego com granola e frutas",
+                "manutencao": "Torrada integral com ovo mexido e queijo branco"
+            },
+            "carnivoro": {
+                "hipertrofia": "Ovos mexidos com peito de peru e uma fatia de pão integral",
+                "emagrecimento": "Ovos cozidos com uma fatia de abacate e tomate",
+                "ganho de massa": "Omelete de ovos inteiros com peito de frango desfiado",
+                "manutencao": "Pão integral com ovos e presunto magro"
+            }
+        },
+        "almoco": {
+            "vegano": {
+                "hipertrofia": "Quinoa com grão-de-bico, batata doce e vegetais grelhados",
+                "emagrecimento": "Salada de folhas verdes, grão-de-bico e vinagrete de limão",
+                "ganho de massa": "Arroz integral, feijão preto e tofu grelhado",
+                "manutencao": "Arroz integral com legumes cozidos e feijão"
+            },
+            "vegetariano": {
+                "hipertrofia": "Arroz integral, lentilhas e ovos mexidos com espinafre",
+                "emagrecimento": "Salada de quinoa com queijo branco e vegetais",
+                "ganho de massa": "Risoto de cogumelos e queijo parmesão",
+                "manutencao": "Macarrão integral com molho de tomate e queijo cottage"
+            },
+            "carnivoro": {
+                "hipertrofia": "Arroz integral, peito de frango grelhado e brócolis",
+                "emagrecimento": "Filé de peixe com salada verde e uma porção pequena de arroz",
+                "ganho de massa": "Macarrão integral com almôndegas de carne",
+                "manutencao": "Carne bovina magra com batata doce e salada"
+            }
+        },
+        "cafe_da_tarde": {
+            "vegano": {
+                "hipertrofia": "Shake de proteína vegana com banana e leite de amêndoas",
+                "emagrecimento": "Frutas com um punhado de amêndoas",
+                "ganho de massa": "Biscoitos de aveia com pasta de amendoim e banana",
+                "manutencao": "Hummus com cenoura e pepino fatiados"
+            },
+            "vegetariano": {
+                "hipertrofia": "Iogurte com granola e uma banana",
+                "emagrecimento": "Frutas com iogurte desnatado",
+                "ganho de massa": "Sanduíche de queijo e tomate",
+                "manutencao": "Torrada integral com queijo cottage e frutas"
+            },
+            "carnivoro": {
+                "hipertrofia": "Sanduíche de peito de peru e queijo com pão integral",
+                "emagrecimento": "Ovos cozidos e uma maçã",
+                "ganho de massa": "Sanduíche de frango desfiado com cenoura ralada",
+                "manutencao": "Torrada com requeijão e peito de peru"
+            }
+        },
+        "jantar": {
+            "vegano": {
+                "hipertrofia": "Batata doce com feijão preto e salada de rúcula",
+                "emagrecimento": "Sopa de legumes variados",
+                "ganho de massa": "Arroz integral com tofu e brócolis",
+                "manutencao": "Salada de grão-de-bico com cenoura e tomate"
+            },
+            "vegetariano": {
+                "hipertrofia": "Omelete de legumes e uma porção de arroz",
+                "emagrecimento": "Sopa de abóbora com ervas",
+                "ganho de massa": "Lasanha de berinjela com queijo",
+                "manutencao": "Risoto de abobrinha e queijo"
+            },
+            "carnivoro": {
+                "hipertrofia": "Peito de frango grelhado com batata doce e espinafre",
+                "emagrecimento": "Sopa de frango com legumes",
+                "ganho de massa": "Arroz integral, carne moída e brócolis",
+                "manutencao": "Frango grelhado com legumes"
+            }
+        },
+        "ceia": {
+            "vegano": {
+                "hipertrofia": "Shake de proteína vegana com amêndoas",
+                "emagrecimento": "Frutas vermelhas e chá de camomila",
+                "ganho de massa": "Biscoitos integrais com pasta de amêndoa",
+                "manutencao": "Mix de nozes e frutas secas"
+            },
+            "vegetariano": {
+                "hipertrofia": "Iogurte grego com mel",
+                "emagrecimento": "Queijo cottage e frutas",
+                "ganho de massa": "Iogurte com granola",
+                "manutencao": "Torrada integral com requeijão light"
+            },
+            "carnivoro": {
+                "hipertrofia": "Iogurte proteico com mel",
+                "emagrecimento": "Frutas frescas e uma porção de amêndoas",
+                "ganho de massa": "Queijo cottage com torradas integrais",
+                "manutencao": "Leite desnatado com uma torrada integral"
+            }
+        }
+    }
+
+    # Selecionar pratos com base na preferência e objetivo
+    sugestao_cafe = sugestoes["cafe_da_manha"].get(preferencias, {}).get(objetivo, "Opção não disponível")
+    sugestao_almoco = sugestoes["almoco"].get(preferencias, {}).get(objetivo, "Opção não disponível")
+    sugestao_cafe_tarde = sugestoes["cafe_da_tarde"].get(preferencias, {}).get(objetivo, "Opção não disponível")
+    sugestao_jantar = sugestoes["jantar"].get(preferencias, {}).get(objetivo, "Opção não disponível")
+    sugestao_ceia = sugestoes["ceia"].get(preferencias, {}).get(objetivo, "Opção não disponível")
+
+    contexto = {
+        "preferencias": ultima_alimentacao.preferencias if ultima_alimentacao else "",
+        "restricoes": ultima_alimentacao.restricoes if ultima_alimentacao else "",
+        "objetivos": ultima_alimentacao.objetivos if ultima_alimentacao else "",
+        "sugestoes": {
+            "cafe_da_manha": sugestao_cafe,
+            "almoco": sugestao_almoco,
+            "cafe_da_tarde": sugestao_cafe_tarde,
+            "jantar": sugestao_jantar,
+            "ceia": sugestao_ceia
+        }
+    }
+
+    return render(request, 'html/veralimentacao.html', contexto)
