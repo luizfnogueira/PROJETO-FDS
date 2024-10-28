@@ -29,30 +29,19 @@
         <p>Abaixo estão os registros de saúde que você enviou:</p>
 
         {% if registros %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Sintoma</th>
-                    <th>Intensidade</th>
-                    <th>Área</th>
-                    <th>Medicamento</th>
-                    <th>Médico</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for registro in registros %}
-                <tr>
-                    <td>{{ registro.data }}</td>
-                    <td>{{ registro.sintoma }}</td>
-                    <td>{{ registro.intensidade }}</td>
-                    <td>{{ registro.area }}</td>
-                    <td>{{ registro.medicamento }}</td>
-                    <td>{{ registro.medico }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="registros">
+            {% for registro in registros %}
+            <div class="registro">
+                <p><strong>Data:</strong> {{ registro.data }}</p>
+                <p><strong>Sintoma:</strong> {{ registro.sintoma }}</p>
+                <p><strong>Intensidade:</strong> {{ registro.intensidade }}</p>
+                <p><strong>Área:</strong> {{ registro.area }}</p>
+                <p><strong>Medicamento:</strong> {{ registro.medicamento }}</p>
+                <p><strong>Médico:</strong> {{ registro.medico }}</p>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
         {% else %}
         <p>Nenhum registro encontrado.</p>
         {% endif %}
