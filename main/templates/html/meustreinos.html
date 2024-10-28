@@ -41,6 +41,7 @@
                     <li>{{ exercicio.nome }} - {{ exercicio.series }} séries de {{ exercicio.repeticoes }} repetições</li>
                     {% endfor %}
                 </ul>
+                <br>
 
                 <!-- Botão de Remover Treino -->
                 <form action="{% url 'remover_treino' treino.id %}" method="post" style="display:inline;">
