@@ -3,16 +3,16 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/horassono.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/suplementacao.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Sono - Exibição</title>
+    <title>Registrar ingestão</title>
 </head>
 <body>
     <nav class="menu">
         <a href="{% url 'home' %}" tabindex="1">Home</a>
         <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
         <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
-        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"> Meus treinos</a>
         <a href="{% url 'tecnicaspbemestar' %}" tabindex="5">Bem-estar</a>
         <a href="{% url 'saude' %}" tabindex="6">Saúde</a>
         <a href="{% url 'sono' %}" tabindex="7">Sono</a>
@@ -26,24 +26,21 @@
             </button>
         </form>
     </nav>
+    <main>
+        <h1>Registro de Ingestão de Medicamentos</h1>
 
-    <h1>Registro de Sono - Exibição</h1>
-    
-    <div>
-        <h2>Registros de Sono</h2>
-        <ul>
-            {% for registro in registros %}
-                <li>
-                    <strong>Horas dormidas:</strong> {{ registro.horas_dormidas }} <br>
-                    <strong>Qualidade do sono:</strong> {{ registro.qualidade_sono }} <br>
-                    <strong>Meta:</strong> {{ registro.meta_sono }} <br>
-                    <strong>Data:</strong> {{ registro.data_registro|date:"d/m/Y H:i" }} <br>
-                </li>
-            {% empty %}
-                <li>Nenhum registro encontrado.</li>
-            {% endfor %}
-        </ul>
-        <a class="botao" href="{% url 'sono' %}">Voltar para o registro</a>
-    </div>
+        <form id="registro-form">
+            <label for="medicamento">Medicamento/Vitamina/Suplemento:</label>
+            <input type="text" id="medicamento" name="medicamento" required>
+
+            <label for="horario">Horário de Ingestão:</label>
+            <input type="time" id="horario" name="horario" required>
+
+            <label for="data">Data de Ingestão:</label>
+            <input type="date" id="data" name="data" required>
+
+            <button type="submit" class="botao">Registrar</button>
+        </form>
+    </main>
 </body>
 </html>

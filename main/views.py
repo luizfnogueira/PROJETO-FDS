@@ -394,3 +394,9 @@ def veralimentacao_view(request):
     }
 
     return render(request, 'html/veralimentacao.html', contexto)
+
+def suplementacao(request):
+    return render(request, 'html/suplementacao.html')
+
+def versuplementacao(request):
+    return render(request, 'html/versuplementacao.html')
