@@ -243,7 +243,7 @@ def horassono(request):
 
     return render(request, 'html/horassono.html', {'registros': registros})
 
-def alimentacao_view(request):
+def alimentacao(request):
     if request.method == "POST":
         preferencias = request.POST.getlist("preferencias")  # Captura múltiplos valores de preferência
         restricoes = request.POST.getlist("restricoes")      # Captura múltiplos valores de restrições
@@ -261,7 +261,7 @@ def alimentacao_view(request):
     return render(request, 'html/alimentacao.html')
 
 
-def veralimentacao_view(request):
+def veralimentacao(request):
     ultima_alimentacao = Alimentacao.objects.last()
 
     # Obter preferências, restrições e objetivos do usuário

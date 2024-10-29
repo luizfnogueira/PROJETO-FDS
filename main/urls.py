@@ -23,8 +23,8 @@ urlpatterns = [
     path('registrosaude/', views.registrosaude, name='registrosaude'),
     path('sono/', views.sono, name='sono'),
     path('horassono/', views.horassono, name='horassono'),
-    path('alimentacao/', views.alimentacao_view, name='alimentacao'),
-    path('veralimentacao/', views.veralimentacao_view, name='veralimentacao'),
-    path('suplementacao/', views.suplementacao_view, name='suplementacao'),
-    path('versuplementacao/', views.versuplementacao_view, name='versuplementacao'),
+    path('alimentacao/', views.alimentacao, name='alimentacao'),
+    path('veralimentacao/', views.veralimentacao, name='veralimentacao'),
+    path('suplementacao/', views.suplementacao, name='suplementacao'),
+    path('versuplementacao/', views.versuplementacao, name='versuplementacao'),
 ]
