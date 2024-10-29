@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver treino</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/treinopersonalizado.css' %}">
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"><i class="fas fa-dumbbell"></i> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+        <a href="{% url 'alimentacao' %}" tabindex="9">Alimentação</a>
+        <a href="{% url 'versuplementacao' %}" tabindex="10">Medicações</a>
+
+        <!-- Botão de logout -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="4" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+
+    <main>
+        <h1>Treino Sugerido</h1>
+        
+       
+
+        <!-- Exibindo objetivo -->
+        <h2>Obejetivo:</h2>
+        <div class="objetivo">
+            <p></p>
+        </div>
+    </main>
+</body>
+</html>

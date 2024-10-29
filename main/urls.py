@@ -27,4 +27,6 @@ urlpatterns = [
     path('veralimentacao/', views.veralimentacao, name='veralimentacao'),
     path('suplementacao/', views.suplementacao, name='suplementacao'),
     path('versuplementacao/', views.versuplementacao, name='versuplementacao'),
+    path('criartreino/', views.criartreino, name='criartreino'),
+    path('treinopersonalizado/', views.treinopersonalizado, name='treinopersonalizado'),
 ]
