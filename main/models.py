@@ -102,3 +102,12 @@ class Alimentacao(models.Model):
     
     def __str__(self):
         return f"Objetivo: {self.objetivos}"
+    
+class Suplementacao(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=100)
+    quantidade = models.CharField(max_length=50)
+    horario = models.TimeField()
+
+    def __str__(self):
+        return f"{self.nome} - {self.quantidade} ({self.horario})"

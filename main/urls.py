@@ -25,8 +25,8 @@ urlpatterns = [
     path('horassono/', views.horassono, name='horassono'),
     path('alimentacao/', views.alimentacao, name='alimentacao'),
     path('veralimentacao/', views.veralimentacao, name='veralimentacao'),
-    path('suplementacao/', views.suplementacao, name='suplementacao'),
-    path('versuplementacao/', views.versuplementacao, name='versuplementacao'),
+    path('versuplementacao/', views.suplementacao_view, name='versuplementacao'),
+    path('adicionar-suplementacao/', views.adicionar_suplementacao, name='adicionar_suplementacao'),
     path('criartreino/', views.criartreino, name='criartreino'),
     path('treinopersonalizado/', views.treinopersonalizado, name='treinopersonalizado'),
 ]

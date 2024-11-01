@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'css/versuplementacao.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de ingestão</title>
+    <title>Lista de Ingestão</title>
 </head>
 <body>
     <nav class="menu">
@@ -27,8 +27,32 @@
         </form>
     </nav>
     <h1>Lista de Ingestão</h1>
-        <p id="historico-lista">
-            <!-- Os registros serão inseridos aqui -->
-        </p>
+
+    <!-- Formulário para adicionar suplementação -->
+    <form action="{% url 'adicionar_suplementacao' %}" method="post">
+        {% csrf_token %}
+        <label for="nome">Nome do Suplemento:</label>
+        <input type="text" name="nome" id="nome" required><br>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="text" name="quantidade" id="quantidade" required><br>
+
+        <label for="horario">Horário:</label>
+        <input type="time" name="horario" id="horario" required><br>
+
+        <button type="submit">Adicionar Suplemento</button>
+    </form>
+
+    <!-- Lista de suplementos cadastrados -->
+    <div id="historico-lista">
+        <h2>Suplementos cadastrados</h2>
+        <ul>
+            {% for suplemento in suplementos %}
+                <li>{{ suplemento.nome }} - {{ suplemento.quantidade }} ({{ suplemento.horario }})</li>
+            {% empty %}
+                <li>Não há suplementos cadastrados.</li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

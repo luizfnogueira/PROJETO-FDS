@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono, Alimentacao
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono, Alimentacao, Suplementacao
 from datetime import date
 
 
@@ -266,10 +266,10 @@ def veralimentacao(request):
 
     # Obter preferências, restrições e objetivos do usuário
     restricoes = ultima_alimentacao.restricoes.split(", ") if ultima_alimentacao else []
-    preferencias = ultima_alimentacao.preferencias if ultima_alimentacao else ""
+    preferencias = ultima_alimentacao.preferencias.split(", ") if ultima_alimentacao else []
     objetivo = ultima_alimentacao.objetivos if ultima_alimentacao else ""
 
-    # Pratos sugeridos para cada refeição e caso específico
+    # Dicionário de sugestões para cada refeição e caso específico
     sugestoes = {
         "cafe_da_manha": {
             "vegano": {
@@ -283,12 +283,6 @@ def veralimentacao(request):
                 "emagrecimento": "Iogurte com frutas vermelhas e uma fatia de pão integral",
                 "ganho de massa": "Iogurte grego com granola e frutas",
                 "manutencao": "Torrada integral com ovo mexido e queijo branco"
-            },
-            "carnivoro": {
-                "hipertrofia": "Ovos mexidos com peito de peru e uma fatia de pão integral",
-                "emagrecimento": "Ovos cozidos com uma fatia de abacate e tomate",
-                "ganho de massa": "Omelete de ovos inteiros com peito de frango desfiado",
-                "manutencao": "Pão integral com ovos e presunto magro"
             }
         },
         "almoco": {
@@ -303,12 +297,6 @@ def veralimentacao(request):
                 "emagrecimento": "Salada de quinoa com queijo branco e vegetais",
                 "ganho de massa": "Risoto de cogumelos e queijo parmesão",
                 "manutencao": "Macarrão integral com molho de tomate e queijo cottage"
-            },
-            "carnivoro": {
-                "hipertrofia": "Arroz integral, peito de frango grelhado e brócolis",
-                "emagrecimento": "Filé de peixe com salada verde e uma porção pequena de arroz",
-                "ganho de massa": "Macarrão integral com almôndegas de carne",
-                "manutencao": "Carne bovina magra com batata doce e salada"
             }
         },
         "cafe_da_tarde": {
@@ -323,12 +311,6 @@ def veralimentacao(request):
                 "emagrecimento": "Frutas com iogurte desnatado",
                 "ganho de massa": "Sanduíche de queijo e tomate",
                 "manutencao": "Torrada integral com queijo cottage e frutas"
-            },
-            "carnivoro": {
-                "hipertrofia": "Sanduíche de peito de peru e queijo com pão integral",
-                "emagrecimento": "Ovos cozidos e uma maçã",
-                "ganho de massa": "Sanduíche de frango desfiado com cenoura ralada",
-                "manutencao": "Torrada com requeijão e peito de peru"
             }
         },
         "jantar": {
@@ -343,12 +325,6 @@ def veralimentacao(request):
                 "emagrecimento": "Sopa de abóbora com ervas",
                 "ganho de massa": "Lasanha de berinjela com queijo",
                 "manutencao": "Risoto de abobrinha e queijo"
-            },
-            "carnivoro": {
-                "hipertrofia": "Peito de frango grelhado com batata doce e espinafre",
-                "emagrecimento": "Sopa de frango com legumes",
-                "ganho de massa": "Arroz integral, carne moída e brócolis",
-                "manutencao": "Frango grelhado com legumes"
             }
         },
         "ceia": {
@@ -363,40 +339,56 @@ def veralimentacao(request):
                 "emagrecimento": "Queijo cottage e frutas",
                 "ganho de massa": "Iogurte com granola",
                 "manutencao": "Torrada integral com requeijão light"
-            },
-            "carnivoro": {
-                "hipertrofia": "Iogurte proteico com mel",
-                "emagrecimento": "Frutas frescas e uma porção de amêndoas",
-                "ganho de massa": "Queijo cottage com torradas integrais",
-                "manutencao": "Leite desnatado com uma torrada integral"
             }
         }
     }
 
-    # Selecionar pratos com base na preferência e objetivo
-    sugestao_cafe = sugestoes["cafe_da_manha"].get(preferencias, {}).get(objetivo, "Opção não disponível")
-    sugestao_almoco = sugestoes["almoco"].get(preferencias, {}).get(objetivo, "Opção não disponível")
-    sugestao_cafe_tarde = sugestoes["cafe_da_tarde"].get(preferencias, {}).get(objetivo, "Opção não disponível")
-    sugestao_jantar = sugestoes["jantar"].get(preferencias, {}).get(objetivo, "Opção não disponível")
-    sugestao_ceia = sugestoes["ceia"].get(preferencias, {}).get(objetivo, "Opção não disponível")
+    # Gerar sugestões de pratos com base nas preferências e objetivos
+    pratos_sugeridos = {}
+    for refeicao, opcoes in sugestoes.items():
+        prato = None
+        for preferencia in preferencias:
+            if preferencia in opcoes:
+                prato = opcoes[preferencia].get(objetivo, opcoes[preferencia].get('manutencao'))
+                if prato:
+                    break
+        if prato:
+            pratos_sugeridos[refeicao] = prato
+        else:
+            pratos_sugeridos[refeicao] = "Nenhuma sugestão disponível para esta preferência."
 
-    contexto = {
-        "preferencias": ultima_alimentacao.preferencias if ultima_alimentacao else "",
-        "restricoes": ultima_alimentacao.restricoes if ultima_alimentacao else "",
-        "objetivos": ultima_alimentacao.objetivos if ultima_alimentacao else "",
-        "sugestoes": {
-            "cafe_da_manha": sugestao_cafe,
-            "almoco": sugestao_almoco,
-            "cafe_da_tarde": sugestao_cafe_tarde,
-            "jantar": sugestao_jantar,
-            "ceia": sugestao_ceia
-        }
-    }
+    # Adicionar variáveis ao contexto
+    return render(request, 'html/veralimentacao.html', {
+        'pratos_sugeridos': pratos_sugeridos,
+        'preferencias': ", ".join(preferencias),
+        'restricoes': ", ".join(restricoes),
+        'objetivo': objetivo
+    })
 
-    return render(request, 'html/veralimentacao.html', contexto)
+def suplementacao_view(request):
+    suplementos = Suplementacao.objects.filter(usuario=request.user)
+    return render(request, 'html/versuplementacao.html', {'suplementos': suplementos})
 
-def suplementacao(request):
-    return render(request, 'html/suplementacao.html')
+def adicionar_suplementacao(request):
+    if request.method == "POST":
+        nome = request.POST.get("nome")
+        quantidade = request.POST.get("quantidade")
+        horario = request.POST.get("horario")
 
-def versuplementacao(request):
+        Suplementacao.objects.create(
+            usuario=request.user,
+            nome=nome,
+            quantidade=quantidade,
+            horario=horario
+        )
+        return redirect('versuplementacao')
+
     return render(request, 'html/versuplementacao.html')
+
+def criartreino(request):
+    # Lógica para a view criartreino
+    return render(request, 'html/criartreino.html')
+
+def treinopersonalizado(request):
+    # Lógica para a view treinopersonalizado
+    return render(request, 'html/treinopersonalizado.html')
