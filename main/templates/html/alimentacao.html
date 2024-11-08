@@ -36,6 +36,9 @@
             
             <!-- Preferências Alimentares -->
             <label for="preferencias">Preferências Alimentares:</label><br>
+            <input type="checkbox" name="preferencias" value="naotenho" id="naotenho"> 
+            <label for="vnaotenho">Não tenho preferências</label><br> 
+
             <input type="checkbox" name="preferencias" value="vegetariano" id="vegetariano"> 
             <label for="vegetariano">Vegetariano</label><br>
             
@@ -59,6 +62,9 @@
             <input type="checkbox" name="restricoes" value="soja" id="soja"> 
             <label for="soja">Soja</label><br><br>
 
+            <input type="checkbox" name="restricoes" value="nao" id="nao"> 
+            <label for="nao">Não tenho restrições</label><br><br>
+
             <!-- Objetivos -->
             <label for="objetivos">Objetivos:</label><br>
             <select id="objetivos" name="objetivos">
@@ -68,9 +74,8 @@
                 <option value="manutencao">Manutenção de Peso</option>
             </select><br><br>
             
-            <button type="submit">Enviar</button>
+            <button type="submit">Ver cardápio</button>
             <br>
-            <a href="{% url 'veralimentacao' %}">Ver preferências e cardápio sugerido</a>
         </form>
     </main>
 </body>
