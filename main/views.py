@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono, Alimentacao, Suplementacao
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono, Alimentacao, Suplementacao, TreinoPersonalizado
 from datetime import date
 
 
@@ -389,6 +389,96 @@ def criartreino(request):
     # Lógica para a view criartreino
     return render(request, 'html/criartreino.html')
 
+def gerar_treino(objetivo):
+    if objetivo == 'hipertrofia':
+        return """
+            1. Supino com barra - 4x8-10 repetições
+            2. Agachamento livre - 4x10 repetições
+            3. Remada curvada - 4x10 repetições
+            4. Desenvolvimento com halteres - 4x10 repetições
+            5. Leg press - 4x10 repetições
+            6. Rosca direta com barra - 3x12 repetições
+            7. Tríceps pulley - 3x12 repetições
+            8. Elevação lateral - 3x15 repetições
+            9. Panturrilha no leg press - 4x15 repetições
+            10. Abdominais (crunch) - 3x20 repetições
+            Descanso: 60-90 segundos entre séries.
+        """
+    elif objetivo == 'emagrecimento':
+        return """
+            1. Corrida na esteira - 5 minutos de aquecimento
+            2. Circuito de burpees - 3x15 repetições
+            3. Polichinelos - 3x20 repetições
+            4. Agachamento com salto - 4x15 repetições
+            5. Flexões de braço - 3x12 repetições
+            6. Mountain climbers - 3x30 segundos
+            7. Jumping lunges - 4x12 repetições
+            8. Abdominais bicicleta - 3x20 repetições
+            9. Prancha - 3x1 minuto
+            10. Corda de pular - 5 minutos para finalização
+            Descanso: 30 segundos entre os exercícios.
+        """
+    elif objetivo == 'ganho de massa':
+        return """
+            1. Supino inclinado com halteres - 4x8-10 repetições
+            2. Levantamento terra - 4x8-10 repetições
+            3. Agachamento sumô - 4x10 repetições
+            4. Desenvolvimento militar - 4x8 repetições
+            5. Remada alta com barra - 3x10 repetições
+            6. Extensão de pernas na máquina - 4x12 repetições
+            7. Flexão de pernas - 4x12 repetições
+            8. Rosca alternada com halteres - 3x10 repetições
+            9. Tríceps francês - 3x10 repetições
+            10. Panturrilha sentado - 4x15 repetições
+            Descanso: 60-90 segundos entre séries.
+        """
+    elif objetivo == 'manutencao':
+        return """
+            1. Supino reto com halteres - 3x12 repetições
+            2. Agachamento com halteres - 3x15 repetições
+            3. Remada unilateral com halteres - 3x12 repetições
+            4. Desenvolvimento lateral - 3x15 repetições
+            5. Rosca scott - 3x12 repetições
+            6. Tríceps testa com halteres - 3x12 repetições
+            7. Elevação pélvica - 3x15 repetições
+            8. Abdominais - 3x20 repetições
+            9. Cadeira extensora - 3x15 repetições
+            10. Panturrilha em pé - 4x20 repetições
+            Descanso: 60 segundos entre séries.
+        """
+    elif objetivo == 'resistencia':
+        return """
+            1. Burpees - 3x20 repetições
+            2. Agachamento com salto - 3x15 repetições
+            3. Flexão de braço - 3x15 repetições
+            4. Mountain climbers - 3x1 minuto
+            5. Corrida ou caminhada em alta inclinação - 5 minutos
+            6. Prancha lateral - 3x30 segundos de cada lado
+            7. Elevação de pernas - 3x20 repetições
+            8. Remada com elástico - 3x20 repetições
+            9. Salto em caixa - 3x15 repetições
+            10. Prancha alta - 3x1 minuto
+            Descanso: 30 segundos entre séries.
+        """
+    return "Treino não encontrado."
+
+def criartreino(request):
+    if request.method == "POST":
+        objetivo = request.POST.get("objetivos")
+        
+        # Gera o treino com base no objetivo
+        treino_sugerido = gerar_treino(objetivo)
+
+        # Salva a preferência e o treino sugerido no banco de dados
+        TreinoPersonalizado.objects.create(user=request.user, objetivo=objetivo, treino_sugerido=treino_sugerido)
+        
+        # Redireciona para a página de treino personalizado
+        return redirect('treinopersonalizado')
+
+    return render(request, 'html/criartreino.html')
+
 def treinopersonalizado(request):
-    # Lógica para a view treinopersonalizado
-    return render(request, 'html/treinopersonalizado.html')
+    # Recupera o último treino personalizado do usuário
+    treino = TreinoPersonalizado.objects.filter(user=request.user).last()
+    
+    return render(request, 'html/treinopersonalizado.html', {'treino': treino})
