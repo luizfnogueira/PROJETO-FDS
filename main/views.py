@@ -267,9 +267,9 @@ def veralimentacao(request):
     # Obter preferências, restrições e objetivos do usuário
     restricoes = ultima_alimentacao.restricoes.split(", ") if ultima_alimentacao else []
     preferencias = ultima_alimentacao.preferencias.split(", ") if ultima_alimentacao else []
-    objetivo = ultima_alimentacao.objetivos if ultima_alimentacao else ""
+    objetivo = ultima_alimentacao.objetivos if ultima_alimentacao else "manutencao"  # padrão caso nenhum objetivo seja fornecido
 
-    # Dicionário de sugestões para cada refeição e caso específico
+    # Dicionário de sugestões para cada refeição e objetivo
     sugestoes = {
         "cafe_da_manha": {
             "vegano": {
@@ -283,6 +283,12 @@ def veralimentacao(request):
                 "emagrecimento": "Iogurte com frutas vermelhas e uma fatia de pão integral",
                 "ganho de massa": "Iogurte grego com granola e frutas",
                 "manutencao": "Torrada integral com ovo mexido e queijo branco"
+            },
+            "geral": {
+                "hipertrofia": "Ovos mexidos com abacate e pão integral",
+                "emagrecimento": "Iogurte natural com frutas e aveia",
+                "ganho de massa": "Panqueca de banana com aveia e pasta de amendoim",
+                "manutencao": "Pão integral com queijo branco e uma vitamina de frutas"
             }
         },
         "almoco": {
@@ -297,6 +303,12 @@ def veralimentacao(request):
                 "emagrecimento": "Salada de quinoa com queijo branco e vegetais",
                 "ganho de massa": "Risoto de cogumelos e queijo parmesão",
                 "manutencao": "Macarrão integral com molho de tomate e queijo cottage"
+            },
+            "geral": {
+                "hipertrofia": "Frango grelhado com batata doce e salada de folhas",
+                "emagrecimento": "Peito de frango com brócolis e legumes ao vapor",
+                "ganho de massa": "Arroz integral, feijão e carne moída",
+                "manutencao": "Arroz, feijão, carne grelhada e salada"
             }
         },
         "cafe_da_tarde": {
@@ -311,6 +323,12 @@ def veralimentacao(request):
                 "emagrecimento": "Frutas com iogurte desnatado",
                 "ganho de massa": "Sanduíche de queijo e tomate",
                 "manutencao": "Torrada integral com queijo cottage e frutas"
+            },
+            "geral": {
+                "hipertrofia": "Iogurte grego com aveia e frutas",
+                "emagrecimento": "Frutas com um punhado de nozes",
+                "ganho de massa": "Sanduíche de peito de peru com queijo",
+                "manutencao": "Torrada com requeijão e uma fruta"
             }
         },
         "jantar": {
@@ -325,6 +343,12 @@ def veralimentacao(request):
                 "emagrecimento": "Sopa de abóbora com ervas",
                 "ganho de massa": "Lasanha de berinjela com queijo",
                 "manutencao": "Risoto de abobrinha e queijo"
+            },
+            "geral": {
+                "hipertrofia": "Frango grelhado com arroz integral e vegetais",
+                "emagrecimento": "Sopa de legumes e uma fatia de pão integral",
+                "ganho de massa": "Arroz, feijão e carne moída com vegetais",
+                "manutencao": "Sopa de legumes com carne e torradas"
             }
         },
         "ceia": {
@@ -339,23 +363,32 @@ def veralimentacao(request):
                 "emagrecimento": "Queijo cottage e frutas",
                 "ganho de massa": "Iogurte com granola",
                 "manutencao": "Torrada integral com requeijão light"
+            },
+            "geral": {
+                "hipertrofia": "Iogurte grego com frutas e aveia",
+                "emagrecimento": "Chá de camomila com mix de frutas vermelhas",
+                "ganho de massa": "Mix de castanhas e frutas secas",
+                "manutencao": "Mix de nozes e uma fruta"
             }
         }
     }
 
     # Gerar sugestões de pratos com base nas preferências e objetivos
     pratos_sugeridos = {}
-    for refeicao, opcoes in sugestoes.items():
-        prato = None
-        for preferencia in preferencias:
-            if preferencia in opcoes:
-                prato = opcoes[preferencia].get(objetivo, opcoes[preferencia].get('manutencao'))
-                if prato:
-                    break
-        if prato:
-            pratos_sugeridos[refeicao] = prato
-        else:
-            pratos_sugeridos[refeicao] = "Nenhuma sugestão disponível para esta preferência."
+    if "naotenho" in preferencias and "nao" in restricoes:
+        # Retorna sugestões gerais para cada refeição com base no objetivo
+        for refeicao, opcoes in sugestoes.items():
+            pratos_sugeridos[refeicao] = opcoes["geral"].get(objetivo, "Sugestão não disponível")
+    else:
+        # Gera sugestões baseadas nas preferências e objetivos
+        for refeicao, opcoes in sugestoes.items():
+            prato = None
+            for preferencia in preferencias:
+                if preferencia in opcoes:
+                    prato = opcoes[preferencia].get(objetivo, opcoes[preferencia].get('manutencao'))
+                    if prato:
+                        break
+            pratos_sugeridos[refeicao] = prato or opcoes["geral"].get(objetivo, "Nenhuma sugestão disponível")
 
     # Adicionar variáveis ao contexto
     return render(request, 'html/veralimentacao.html', {
