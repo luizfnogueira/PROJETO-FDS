@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/versuplementacao.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Ingestão</title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="{% url 'home' %}" tabindex="1">Home</a>
+        <a href="{% url 'hidratacao' %}" tabindex="2">Hidratação</a>
+        <a href="{% url 'meupeso' %}" tabindex="3">Meu Peso</a>
+        <a href="{% url 'meustreinos' %}" tabindex="4" aria-label="Meus Treinos"> Meus treinos</a>
+        <a href="{% url 'tecnicaspbemestar' %}" tabindex="5">Bem-estar</a>
+        <a href="{% url 'saude' %}" tabindex="6">Saúde</a>
+        <a href="{% url 'sono' %}" tabindex="7">Sono</a>
+        <a href="{% url 'alimentacao' %}" tabindex="9">Alimentação</a>
+        <a href="{% url 'versuplementacao' %}" tabindex="10">Medicações</a>
+
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" tabindex="8" style="border:none; background:none; color:#000; cursor:pointer;">
+                Log out
+            </button>
+        </form>
+    </nav>
+    <h1>Lista de Ingestão</h1>
+
+    <!-- Formulário para adicionar suplementação -->
+    <form action="{% url 'adicionar_suplementacao' %}" method="post">
+        {% csrf_token %}
+        <label for="nome">Nome do Suplemento:</label>
+        <input type="text" name="nome" id="nome" required><br>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="text" name="quantidade" id="quantidade" required><br>
+
+        <label for="horario">Horário:</label>
+        <input type="time" name="horario" id="horario" required><br>
+
+        <button type="submit">Adicionar Suplemento</button>
+    </form>
+
+    <!-- Lista de suplementos cadastrados -->
+    <div id="historico-lista">
+        <h2>Suplementos cadastrados</h2>
+        <ul>
+            {% for suplemento in suplementos %}
+                <li>{{ suplemento.nome }} - {{ suplemento.quantidade }} ({{ suplemento.horario }})</li>
+            {% empty %}
+                <li>Não há suplementos cadastrados.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -94,3 +94,37 @@ class Sono(models.Model):
 
     def __str__(self):
         return f"Sono: {self.horas_dormidas} horas, Qualidade: {self.qualidade_sono}"
+    
+class Alimentacao(models.Model):
+    preferencias = models.TextField()
+    restricoes = models.TextField()
+    objetivos = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return f"Objetivo: {self.objetivos}"
+    
+class Suplementacao(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=100)
+    quantidade = models.CharField(max_length=50)
+    horario = models.TimeField()
+
+    def __str__(self):
+        return f"{self.nome} - {self.quantidade} ({self.horario})"
+
+class TreinoPersonalizado(models.Model):
+    OBJETIVOS = [
+        ('hipertrofia', 'Hipertrofia'),
+        ('emagrecimento', 'Emagrecimento'),
+        ('ganho de massa', 'Ganho de Massa Muscular'),
+        ('manutencao', 'Manutenção de Peso'),
+        ('resistencia', 'Melhorar Resistência'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    objetivo = models.CharField(max_length=20, choices=OBJETIVOS)
+    treino_sugerido = models.TextField(blank=True, null=True)
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.objetivo}'

@@ -13,30 +13,26 @@ describe('Login no site e depois Adicionar Treino', () => {
     });
 
     it('Adicionar Treino Com Sucesso', () => {
-        cy.get('[href="/meustreinos/"]').click()
-        cy.get('main > a').click()
+        cy.get('[href="/meustreinos/"]').click();
+        cy.get('[href="/adicionartreino/"]').click()
         cy.get('#dia_da_semana').select('Quarta-feira');
-        cy.get('#nome_exercicio_1').type('treinodeteste')
-        cy.get('#series_1').type('4')
-        cy.get('#repeticoes_1').type('10')
-        cy.get('[type="button"]').click()
-        cy.get('#nome_exercicio_2').type('treinodeteste2')
-        cy.get('#series_2').type('3')
-        cy.get('#repeticoes_2').type('12')
-        cy.get('main > form > [type="submit"]').click()
+        cy.get('#nome_exercicio_1').type('treinodeteste');
+        cy.get('#series_1').type('4');
+        cy.get('#repeticoes_1').type('10');
+        cy.get('main > form > [type="submit"]').click();
 
-        cy.wait(3000)
+        cy.wait(3000);
 
-        cy.get('[href="/meustreinos/"]').click()
-        cy.get('main > a').click()
+        cy.get('[href="/meustreinos/"]').click();
+        cy.get('[href="/adicionartreino/"]').click()
         cy.get('#dia_da_semana').select('Terça-feira');
-        cy.get('#nome_exercicio_1').type('treinodeteste')
-        cy.get('#series_1').type('4')
-        cy.get('#repeticoes_1').type('10')
-        cy.get('[type="button"]').click()
-        cy.get('#nome_exercicio_2').type('treinodeteste2')
-        cy.get('#series_2').type('3')
-        cy.get('#repeticoes_2').type('12')
-        cy.get('main > form > [type="submit"]').click()
+        cy.get('#nome_exercicio_1').type('treinodeteste');
+        cy.get('#series_1').type('4');
+        cy.get('#repeticoes_1').type('10');
+        cy.get('[type="button"]').click();
+        cy.get('#nome_exercicio_2').type('treinodeteste2');
+        cy.get('#series_2').type('3');
+        cy.get('#repeticoes_2').type('12');
+        cy.get('main > form > [type="submit"]').click();
     });
 });

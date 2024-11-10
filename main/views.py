@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.db import models
-from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono
+from .models import Perfil, Hidratacao, IMC, Treino, Exercicio, Sentimento, Atividade, RegistroSaude, Sono, Alimentacao, Suplementacao, TreinoPersonalizado
 from datetime import date
 
 
@@ -242,3 +242,276 @@ def horassono(request):
         registros = []
 
     return render(request, 'html/horassono.html', {'registros': registros})
+
+def alimentacao(request):
+    if request.method == "POST":
+        preferencias = request.POST.getlist("preferencias")  # Captura múltiplos valores de preferência
+        restricoes = request.POST.getlist("restricoes")      # Captura múltiplos valores de restrições
+        objetivos = request.POST.get("objetivos", "")
+
+        # Armazenar as informações no banco de dados
+        Alimentacao.objects.create(
+            preferencias=", ".join(preferencias),  # Salva como string separada por vírgulas
+            restricoes=", ".join(restricoes),
+            objetivos=objetivos
+        )
+        
+        return redirect('veralimentacao')  # Redireciona para a página de visualização
+
+    return render(request, 'html/alimentacao.html')
+
+
+def veralimentacao(request):
+    ultima_alimentacao = Alimentacao.objects.last()
+
+    # Obter preferências, restrições e objetivos do usuário
+    restricoes = ultima_alimentacao.restricoes.split(", ") if ultima_alimentacao else []
+    preferencias = ultima_alimentacao.preferencias.split(", ") if ultima_alimentacao else []
+    objetivo = ultima_alimentacao.objetivos if ultima_alimentacao else "manutencao"  # padrão caso nenhum objetivo seja fornecido
+
+    # Dicionário de sugestões para cada refeição e objetivo
+    sugestoes = {
+        "cafe_da_manha": {
+            "vegano": {
+                "hipertrofia": "Pão integral com pasta de amendoim e uma vitamina de frutas com aveia",
+                "emagrecimento": "Smoothie de espinafre, banana e aveia com chia",
+                "ganho de massa": "Panquecas de aveia e banana com creme de amêndoas",
+                "manutencao": "Pão integral com abacate e uma salada de frutas"
+            },
+            "vegetariano": {
+                "hipertrofia": "Omelete de claras com espinafre e queijo cottage",
+                "emagrecimento": "Iogurte com frutas vermelhas e uma fatia de pão integral",
+                "ganho de massa": "Iogurte grego com granola e frutas",
+                "manutencao": "Torrada integral com ovo mexido e queijo branco"
+            },
+            "geral": {
+                "hipertrofia": "Ovos mexidos com abacate e pão integral",
+                "emagrecimento": "Iogurte natural com frutas e aveia",
+                "ganho de massa": "Panqueca de banana com aveia e pasta de amendoim",
+                "manutencao": "Pão integral com queijo branco e uma vitamina de frutas"
+            }
+        },
+        "almoco": {
+            "vegano": {
+                "hipertrofia": "Quinoa com grão-de-bico, batata doce e vegetais grelhados",
+                "emagrecimento": "Salada de folhas verdes, grão-de-bico e vinagrete de limão",
+                "ganho de massa": "Arroz integral, feijão preto e tofu grelhado",
+                "manutencao": "Arroz integral com legumes cozidos e feijão"
+            },
+            "vegetariano": {
+                "hipertrofia": "Arroz integral, lentilhas e ovos mexidos com espinafre",
+                "emagrecimento": "Salada de quinoa com queijo branco e vegetais",
+                "ganho de massa": "Risoto de cogumelos e queijo parmesão",
+                "manutencao": "Macarrão integral com molho de tomate e queijo cottage"
+            },
+            "geral": {
+                "hipertrofia": "Frango grelhado com batata doce e salada de folhas",
+                "emagrecimento": "Peito de frango com brócolis e legumes ao vapor",
+                "ganho de massa": "Arroz integral, feijão e carne moída",
+                "manutencao": "Arroz, feijão, carne grelhada e salada"
+            }
+        },
+        "cafe_da_tarde": {
+            "vegano": {
+                "hipertrofia": "Shake de proteína vegana com banana e leite de amêndoas",
+                "emagrecimento": "Frutas com um punhado de amêndoas",
+                "ganho de massa": "Biscoitos de aveia com pasta de amendoim e banana",
+                "manutencao": "Hummus com cenoura e pepino fatiados"
+            },
+            "vegetariano": {
+                "hipertrofia": "Iogurte com granola e uma banana",
+                "emagrecimento": "Frutas com iogurte desnatado",
+                "ganho de massa": "Sanduíche de queijo e tomate",
+                "manutencao": "Torrada integral com queijo cottage e frutas"
+            },
+            "geral": {
+                "hipertrofia": "Iogurte grego com aveia e frutas",
+                "emagrecimento": "Frutas com um punhado de nozes",
+                "ganho de massa": "Sanduíche de peito de peru com queijo",
+                "manutencao": "Torrada com requeijão e uma fruta"
+            }
+        },
+        "jantar": {
+            "vegano": {
+                "hipertrofia": "Batata doce com feijão preto e salada de rúcula",
+                "emagrecimento": "Sopa de legumes variados",
+                "ganho de massa": "Arroz integral com tofu e brócolis",
+                "manutencao": "Salada de grão-de-bico com cenoura e tomate"
+            },
+            "vegetariano": {
+                "hipertrofia": "Omelete de legumes e uma porção de arroz",
+                "emagrecimento": "Sopa de abóbora com ervas",
+                "ganho de massa": "Lasanha de berinjela com queijo",
+                "manutencao": "Risoto de abobrinha e queijo"
+            },
+            "geral": {
+                "hipertrofia": "Frango grelhado com arroz integral e vegetais",
+                "emagrecimento": "Sopa de legumes e uma fatia de pão integral",
+                "ganho de massa": "Arroz, feijão e carne moída com vegetais",
+                "manutencao": "Sopa de legumes com carne e torradas"
+            }
+        },
+        "ceia": {
+            "vegano": {
+                "hipertrofia": "Shake de proteína vegana com amêndoas",
+                "emagrecimento": "Frutas vermelhas e chá de camomila",
+                "ganho de massa": "Biscoitos integrais com pasta de amêndoa",
+                "manutencao": "Mix de nozes e frutas secas"
+            },
+            "vegetariano": {
+                "hipertrofia": "Iogurte grego com mel",
+                "emagrecimento": "Queijo cottage e frutas",
+                "ganho de massa": "Iogurte com granola",
+                "manutencao": "Torrada integral com requeijão light"
+            },
+            "geral": {
+                "hipertrofia": "Iogurte grego com frutas e aveia",
+                "emagrecimento": "Chá de camomila com mix de frutas vermelhas",
+                "ganho de massa": "Mix de castanhas e frutas secas",
+                "manutencao": "Mix de nozes e uma fruta"
+            }
+        }
+    }
+
+    # Gerar sugestões de pratos com base nas preferências e objetivos
+    pratos_sugeridos = {}
+    if "naotenho" in preferencias and "nao" in restricoes:
+        # Retorna sugestões gerais para cada refeição com base no objetivo
+        for refeicao, opcoes in sugestoes.items():
+            pratos_sugeridos[refeicao] = opcoes["geral"].get(objetivo, "Sugestão não disponível")
+    else:
+        # Gera sugestões baseadas nas preferências e objetivos
+        for refeicao, opcoes in sugestoes.items():
+            prato = None
+            for preferencia in preferencias:
+                if preferencia in opcoes:
+                    prato = opcoes[preferencia].get(objetivo, opcoes[preferencia].get('manutencao'))
+                    if prato:
+                        break
+            pratos_sugeridos[refeicao] = prato or opcoes["geral"].get(objetivo, "Nenhuma sugestão disponível")
+
+    # Adicionar variáveis ao contexto
+    return render(request, 'html/veralimentacao.html', {
+        'pratos_sugeridos': pratos_sugeridos,
+        'preferencias': ", ".join(preferencias),
+        'restricoes': ", ".join(restricoes),
+        'objetivo': objetivo
+    })
+
+def suplementacao_view(request):
+    suplementos = Suplementacao.objects.filter(usuario=request.user)
+    return render(request, 'html/versuplementacao.html', {'suplementos': suplementos})
+
+def adicionar_suplementacao(request):
+    if request.method == "POST":
+        nome = request.POST.get("nome")
+        quantidade = request.POST.get("quantidade")
+        horario = request.POST.get("horario")
+
+        Suplementacao.objects.create(
+            usuario=request.user,
+            nome=nome,
+            quantidade=quantidade,
+            horario=horario
+        )
+        return redirect('versuplementacao')
+
+    return render(request, 'html/versuplementacao.html')
+
+def criartreino(request):
+    # Lógica para a view criartreino
+    return render(request, 'html/criartreino.html')
+
+def gerar_treino(objetivo):
+    if objetivo == 'hipertrofia':
+        return """
+            1. Supino com barra - 4x8-10 repetições
+            2. Agachamento livre - 4x10 repetições
+            3. Remada curvada - 4x10 repetições
+            4. Desenvolvimento com halteres - 4x10 repetições
+            5. Leg press - 4x10 repetições
+            6. Rosca direta com barra - 3x12 repetições
+            7. Tríceps pulley - 3x12 repetições
+            8. Elevação lateral - 3x15 repetições
+            9. Panturrilha no leg press - 4x15 repetições
+            10. Abdominais (crunch) - 3x20 repetições
+            Descanso: 60-90 segundos entre séries.
+        """
+    elif objetivo == 'emagrecimento':
+        return """
+            1. Corrida na esteira - 5 minutos de aquecimento
+            2. Circuito de burpees - 3x15 repetições
+            3. Polichinelos - 3x20 repetições
+            4. Agachamento com salto - 4x15 repetições
+            5. Flexões de braço - 3x12 repetições
+            6. Mountain climbers - 3x30 segundos
+            7. Jumping lunges - 4x12 repetições
+            8. Abdominais bicicleta - 3x20 repetições
+            9. Prancha - 3x1 minuto
+            10. Corda de pular - 5 minutos para finalização
+            Descanso: 30 segundos entre os exercícios.
+        """
+    elif objetivo == 'ganho de massa':
+        return """
+            1. Supino inclinado com halteres - 4x8-10 repetições
+            2. Levantamento terra - 4x8-10 repetições
+            3. Agachamento sumô - 4x10 repetições
+            4. Desenvolvimento militar - 4x8 repetições
+            5. Remada alta com barra - 3x10 repetições
+            6. Extensão de pernas na máquina - 4x12 repetições
+            7. Flexão de pernas - 4x12 repetições
+            8. Rosca alternada com halteres - 3x10 repetições
+            9. Tríceps francês - 3x10 repetições
+            10. Panturrilha sentado - 4x15 repetições
+            Descanso: 60-90 segundos entre séries.
+        """
+    elif objetivo == 'manutencao':
+        return """
+            1. Supino reto com halteres - 3x12 repetições
+            2. Agachamento com halteres - 3x15 repetições
+            3. Remada unilateral com halteres - 3x12 repetições
+            4. Desenvolvimento lateral - 3x15 repetições
+            5. Rosca scott - 3x12 repetições
+            6. Tríceps testa com halteres - 3x12 repetições
+            7. Elevação pélvica - 3x15 repetições
+            8. Abdominais - 3x20 repetições
+            9. Cadeira extensora - 3x15 repetições
+            10. Panturrilha em pé - 4x20 repetições
+            Descanso: 60 segundos entre séries.
+        """
+    elif objetivo == 'resistencia':
+        return """
+            1. Burpees - 3x20 repetições
+            2. Agachamento com salto - 3x15 repetições
+            3. Flexão de braço - 3x15 repetições
+            4. Mountain climbers - 3x1 minuto
+            5. Corrida ou caminhada em alta inclinação - 5 minutos
+            6. Prancha lateral - 3x30 segundos de cada lado
+            7. Elevação de pernas - 3x20 repetições
+            8. Remada com elástico - 3x20 repetições
+            9. Salto em caixa - 3x15 repetições
+            10. Prancha alta - 3x1 minuto
+            Descanso: 30 segundos entre séries.
+        """
+    return "Treino não encontrado."
+
+def criartreino(request):
+    if request.method == "POST":
+        objetivo = request.POST.get("objetivos")
+        
+        # Gera o treino com base no objetivo
+        treino_sugerido = gerar_treino(objetivo)
+
+        # Salva a preferência e o treino sugerido no banco de dados
+        TreinoPersonalizado.objects.create(user=request.user, objetivo=objetivo, treino_sugerido=treino_sugerido)
+        
+        # Redireciona para a página de treino personalizado
+        return redirect('treinopersonalizado')
+
+    return render(request, 'html/criartreino.html')
+
+def treinopersonalizado(request):
+    # Recupera o último treino personalizado do usuário
+    treino = TreinoPersonalizado.objects.filter(user=request.user).last()
+    
+    return render(request, 'html/treinopersonalizado.html', {'treino': treino})

@@ -37,6 +37,9 @@
         <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
         <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
         <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+        <a href="{% url 'alimentacao' %}" tabindex="9">Alimentação</a>
+        <a href="{% url 'versuplementacao' %}" tabindex="10">Medicações</a>
+
 
 
         <!-- Botão de logout -->
@@ -63,6 +66,7 @@
                     <option value="domingo">Domingo</option>
                 </select>
             </div>
+            <br>
 
             <!-- container para os exercícios -->
             <div id="exercicios-container">
@@ -75,10 +79,13 @@
                     <input type="number" id="repeticoes_1" name="repeticoes" required min="1">
                 </div>
             </div>
+            <br>
 
             <button type="button" onclick="adicionarExercicio()">Adicionar mais um exercício</button>
             <br><br>
             <button type="submit">Salvar Treino</button>
+            <br><br>
+            <a href="{% url 'meustreinos' %}">Ver meu treino atual</a>
         </form>
     </main>
 </body>

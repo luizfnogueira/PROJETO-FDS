@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Técnicas para bem-estar</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/tecnicas.css' %}">
+    <title>Treino Personalizado</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/criartreino.css' %}">
 </head>
 <body>
     <nav class="menu">
@@ -18,7 +18,6 @@
         <a href="{% url 'sono' %}" tabindex="8">Sono</a>
         <a href="{% url 'alimentacao' %}" tabindex="9">Alimentação</a>
         <a href="{% url 'versuplementacao' %}" tabindex="10">Medicações</a>
-
         <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
@@ -27,22 +26,23 @@
             </button>
         </form>
     </nav>
-    <h1>Bem-vindo à seção de técnicas de bem-estar do app! Aqui, você pode escolher entre três opções poderosas para melhorar sua saúde e relaxamento.</h1>
-    <br>
-    <p>A respiração guiada ajuda a acalmar a mente o corpo através de exercícios respiratórios estruturado, promovendo um estado de tranquilidade e foco.</p>
-    <br>
-    <p>O relaxamento muscular foca na liberação da tensão física, auxiliando na redução do estresse e na melhora da flexibilidade.</p>
-    <br>
-    <p>O alongamento melhora a flexibilidade e a mobilidade das suas articulações, o que pode reduzir o risco de lesões e melhorar sua performance física.</p>
-    <br>
-    <label>Selecione a técnica que mais se adapta às suas necessidades:</label>
-    <br>
 
-    <a href="{% url 'alongamento' %}">Alongamento</a>
-    <br>
-    <a href="{% url 'respiracaoguiada' %}">Respiração guiada</a>
-    <br>
-    <a href="{% url 'relaxamentomuscular' %}">Relaxamento muscular</a>
-
+    <main>
+        <h1>Selecione seu objetivo de treino:</h1>
+        <form method="post" action="{% url 'criartreino' %}">
+            {% csrf_token %}
+            <!-- Objetivos -->
+            <label for="objetivos">Objetivo principal:</label><br>
+            <select id="objetivos" name="objetivos">
+                <option value="hipertrofia">Hipertrofia</option>
+                <option value="emagrecimento">Emagrecimento</option>
+                <option value="ganho de massa">Ganho de Massa Muscular</option>
+                <option value="manutencao">Manutenção de Peso</option>
+                <option value="resistencia">Melhorar Resistência</option>
+            </select><br><br>
+            
+            <button type="submit">Gerar Treino</button>
+        </form>
+    </main>
 </body>
 </html>

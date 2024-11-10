@@ -1,5 +1,7 @@
 # FORTIS
 
+carvalho
+
 ![banner](https://github.com/user-attachments/assets/759240ee-e3f1-4af8-9e58-f626e634feb3)
 
 ## Descrição:
@@ -74,6 +76,14 @@ Marina Hoffmann Guimarães - mhg@cesar.school
     <span>🔗 Figma</span>
   </a>
 </p>
+
+  ### Link da Azure
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="http://fortisapp.azurewebsites.net/" style="text-decoration: none;">
+    <span>🔗 Link </span>
+  </a>
+</p>
 </details>
 
 <details>
@@ -146,24 +156,20 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 <details>
 <summary>📧 Entrega 3</summary>
   
-### 📄 Jira sprint 3 
+### 📄 Jira Quadro Sprint 3 
 
-  <img src="https://github.com/user-attachments/assets/07027a78-5846-4855-b287-03cf1548da47" alt="Repository Size">
-  <br>
-  <img src="https://github.com/user-attachments/assets/13531bf4-e9d0-4938-8df4-eaeb176ee839" alt="Repository Size">
-  <br>
-  <img src="https://github.com/user-attachments/assets/4dd4cf12-5e07-4f6d-8437-a95dae71c54e" alt="Repository Size">
+  <img src="https://github.com/user-attachments/assets/4aab76b6-b00c-4f35-a881-e4d78dfd390f" alt="Repository Size">
   <br>
   
   ### 📄 Jira Backlog
 
-  <img src="https://github.com/user-attachments/assets/123d5bfe-9b32-499d-b73c-00f9c18e6966" alt="Repository Size">
+  <img src="https://github.com/user-attachments/assets/7f5648c0-2064-4bcc-b580-099d1c466e25" alt="Repository Size">
   <br>
   
   ### 🎥 Screencast do protótipo
 
 <p style="text-align: center; text-decoration: none;">
-  <a href="https://youtu.be/c3wc2SM_Ez4" style="text-decoration: none;">
+  <a href="https://youtu.be/oEApqhxcVEI" style="text-decoration: none;">
     <span>🔗 Screencast do FIGMA</span>
   </a>
 </p>
@@ -187,8 +193,17 @@ Marina Hoffmann Guimarães - mhg@cesar.school
     <span>🔗 Screencast com ênfase nas novas histórias</span>
   </a>
 </p>
-  
 
+<br>
+
+### 🎥 Screencast dos testes automatizados
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://www.youtube.com/watch?v=eHG4vvYfCYc" style="text-decoration: none;">
+    <span>🔗 Screencast no cypress</span>
+  </a>
+</p>
+  
 <br>
 
 ### Link da Azure
@@ -208,8 +223,7 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 <summary>📧 Entrega 4</summary>
 </details>
 
-## Licença📃
-Este projeto é licenciado sob a [MIT License](https://opensource.org/licenses/MIT)
+
 
 ## Licença📃
 Este projeto é licenciado sob a [MIT License](https://opensource.org/licenses/MIT) 

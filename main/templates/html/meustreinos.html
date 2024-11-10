@@ -18,6 +18,8 @@
         <a href="{% url 'tecnicaspbemestar' %}" tabindex="6">Bem-estar</a>
         <a href="{% url 'saude' %}" tabindex="7">Saúde</a>
         <a href="{% url 'sono' %}" tabindex="8">Sono</a>
+        <a href="{% url 'alimentacao' %}" tabindex="9">Alimentação</a>
+        <a href="{% url 'versuplementacao' %}" tabindex="10">Medicações</a>
 
         <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
@@ -40,6 +42,7 @@
                     <li>{{ exercicio.nome }} - {{ exercicio.series }} séries de {{ exercicio.repeticoes }} repetições</li>
                     {% endfor %}
                 </ul>
+                <br>
 
                 <!-- Botão de Remover Treino -->
                 <form action="{% url 'remover_treino' treino.id %}" method="post" style="display:inline;">
@@ -53,6 +56,8 @@
         </ul>
 
         <a href="{% url 'adicionartreino' %}">Adicionar novo treino</a>
+        <a href="{% url 'criartreino' %}">Criar treino personalizado</a>
+
     </main>
 </body>
 
