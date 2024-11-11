@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver treino</title>
+    <title>Ver Treino</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/treinopersonalizado.css' %}">
 </head>
 <body>
@@ -18,7 +18,6 @@
         <a href="{% url 'sono' %}" tabindex="8">Sono</a>
         <a href="{% url 'alimentacao' %}" tabindex="9">Alimentação</a>
         <a href="{% url 'versuplementacao' %}" tabindex="10">Medicações</a>
-
         <!-- Botão de logout -->
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
@@ -31,13 +30,21 @@
     <main>
         <h1>Treino Sugerido</h1>
         
-       
-
-        <!-- Exibindo objetivo -->
-        <h2>Obejetivo:</h2>
-        <div class="objetivo">
-            <p></p>
-        </div>
+        {% if treino %}
+            <!-- Exibindo objetivo -->
+            <h2>Objetivo:</h2>
+            <div class="objetivo">
+                <p>{{ treino.objetivo }}</p>
+            </div>
+            
+            <!-- Exibindo treino sugerido -->
+            <h2>Treino Sugerido:</h2>
+            <div class="treino-sugerido">
+                <pre>{{ treino.treino_sugerido }}</pre>
+            </div>
+        {% else %}
+            <p>Nenhum treino foi selecionado ainda.</p>
+        {% endif %}
     </main>
 </body>
 </html>
