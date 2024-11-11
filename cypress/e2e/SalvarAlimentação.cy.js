@@ -19,10 +19,6 @@ describe('Login no site e depois Salvar Preferencias', () => {
         cy.get('#objetivos').select('Hipertrofia');
         cy.get('main > form > button').click();
     });
-    it('Visualizar Cadastro com Sucesso', () => {
-        cy.get('[href="/alimentacao/"]').click();
-        cy.get('form > a').click();
-    });
     it('Salvar Preferencias com 2 Restrições Com Sucesso', () => {
         cy.get('[href="/alimentacao/"]').click();
         cy.get('#vegetariano').click();
@@ -30,9 +26,5 @@ describe('Login no site e depois Salvar Preferencias', () => {
         cy.get('#gluten').click();
         cy.get('#objetivos').select('Emagrecimento');
         cy.get('main > form > button').click();
-    });
-    it('Visualizar Cadastro com Sucesso', () => {
-        cy.get('[href="/alimentacao/"]').click();
-        cy.get('form > a').click();
     });
 });
