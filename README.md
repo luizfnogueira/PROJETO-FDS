@@ -1,7 +1,5 @@
 # FORTIS
 
-carvalho
-
 ![banner](https://github.com/user-attachments/assets/759240ee-e3f1-4af8-9e58-f626e634feb3)
 
 ## Descrição:
@@ -20,15 +18,12 @@ FORTIS (Força, Organização, Resiliência, Transformação e Inspiração Saud
 - Monitoramento de medicamentos
 - Sugestões de alimentação
 - Planos de condicionamento físico
-- Socialização e progresso compartilhado
   
 - Planejador de Refeições: Sugestões de dietas equilibradas, planos de refeições personalizados e receitas saudáveis, com foco no objetivo do usuário.
 
 - Registro de Hidratação: Lembretes e monitoramento da ingestão de água ao longo do dia.
 
 - Desafios e Metas: Funcionalidade para definir metas de exercícios para a saúde e bem-estar podendo, participar de desafios motivacionais, com sistema de ranking.
-
-- Comunidade e Suporte Social: Fóruns e grupos de apoio para interagir com outros usuários, trocar experiências e receber suporte.
 
 # Tecnologias 👾
 
@@ -221,6 +216,54 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 
 <details>
 <summary>📧 Entrega 4</summary>
+  
+  ### 📄 Jira Quadro Sprint 4 
+
+  <img src="https://github.com/user-attachments/assets/8e89592b-bbc4-4e15-b7ce-414850fe2a11" alt="Repository Size">
+  <br>
+  
+  ### 📄 Jira Backlog
+
+  <img src="https://github.com/user-attachments/assets/bf2295b1-2d28-4bf7-9faf-2c0628c69af3" alt="Repository Size">
+  <br>
+  
+  ### 🎥 Screencast do protótipo
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/P9qAy3DhcSQ" style="text-decoration: none;">
+    <span>🔗 Screencast do FIGMA</span>
+  </a>
+</p>
+
+<br>
+  
+  ### 📄 Prototipação Lo-Fi
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://www.figma.com/design/Vo7Jd6HeI0TCrXF3rnj5kF/FORTIS?node-id=0-1&t=AL28ZR4ofulLp0Oe-1" style="text-decoration: none;">
+    <span>🔗 Figma</span>
+  </a>
+</p>
+
+<br>
+
+### 🎥 Screencast
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/-xKDAoRQAHs" style="text-decoration: none;">
+    <span>🔗 Screencast com ênfase nas novas histórias</span>
+  </a>
+</p>
+
+<br>
+
+### Link da Azure
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="http://fortisapp.azurewebsites.net/" style="text-decoration: none;">
+    <span>🔗 Link </span>
+  </a>
+</p>
 </details>
 
 

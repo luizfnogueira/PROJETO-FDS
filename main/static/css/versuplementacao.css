@@ -8,7 +8,7 @@ body {
     text-align: center; /* Centraliza todo o texto no corpo da página */
 }
 
-/* Navigation Menu */
+/* Estilos do menu */
 nav.menu {
     background-color: #4CAF50;
     padding: 5px;
@@ -20,7 +20,9 @@ nav.menu {
     z-index: 1000;
 }
 
-nav.menu a, nav.menu button {
+/* Estilo comum para links e botões no menu */
+nav.menu a,
+nav.menu button {
     color: white;
     text-decoration: none;
     font-size: 18px;
@@ -33,16 +35,20 @@ nav.menu a, nav.menu button {
     align-items: center;
 }
 
-nav.menu a:hover {
+/* Hover para links e botão de logout */
+nav.menu a:hover,
+nav.menu button:hover {
     color: #e0e0e0;
 }
 
+/* Estilo específico para o botão de logout */
 nav.menu button {
     background-color: #4CAF50;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.2s;
 }
 
+/* Efeitos de hover e clique para o botão de logout */
 nav.menu button:hover {
     background-color: #FF4500;
 }
@@ -51,7 +57,6 @@ nav.menu button:active {
     background-color: #FF3300;
     transform: scale(0.95);
 }
-
 /* Main Content */
 h1 {
     color: #4CAF50;
