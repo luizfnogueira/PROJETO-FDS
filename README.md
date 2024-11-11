@@ -18,15 +18,12 @@ FORTIS (Força, Organização, Resiliência, Transformação e Inspiração Saud
 - Monitoramento de medicamentos
 - Sugestões de alimentação
 - Planos de condicionamento físico
-- Socialização e progresso compartilhado
   
 - Planejador de Refeições: Sugestões de dietas equilibradas, planos de refeições personalizados e receitas saudáveis, com foco no objetivo do usuário.
 
 - Registro de Hidratação: Lembretes e monitoramento da ingestão de água ao longo do dia.
 
 - Desafios e Metas: Funcionalidade para definir metas de exercícios para a saúde e bem-estar podendo, participar de desafios motivacionais, com sistema de ranking.
-
-- Comunidade e Suporte Social: Fóruns e grupos de apoio para interagir com outros usuários, trocar experiências e receber suporte.
 
 # Tecnologias 👾
 
