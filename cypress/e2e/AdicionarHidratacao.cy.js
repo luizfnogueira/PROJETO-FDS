@@ -1,7 +1,7 @@
 describe('Login no site e depois Registrar Hidratação', () => {
     
     // O bloco "before" será executado antes de cada teste
-    before(() => {
+    beforeEach(() => {
         cy.visit('/');
         cy.get('[href="/login/"]').click(); // Ir para a página de login
 
@@ -21,5 +21,9 @@ describe('Login no site e depois Registrar Hidratação', () => {
         cy.get('[href="/hidratacao/"]').click();
         cy.get('#quantidade_agua').type('250ml');
         cy.get('section > form > button').click();
+    });
+    it('Visualizar o Historico com sucesso', () => {
+        cy.get('[href="/hidratacao/"]').click();
+        cy.get('section > a').click();
     });
 });

@@ -1,7 +1,7 @@
 describe('Login no site e depois monitorar Saude', () => {
     
     // O bloco "before" será executado antes de cada teste
-    before(() => {
+    beforeEach(() => {
         cy.visit('/');
         cy.get('[href="/login/"]').click(); // Ir para a página de login
 
@@ -12,12 +12,16 @@ describe('Login no site e depois monitorar Saude', () => {
         cy.get('button').click(); // Clicar no botão de login
     });
     it('Adicionar pesquisa de saude com sucesso', () => {
-        cy.get('[href="/saude/"]').click()
-        cy.get('#sintoma').type('dor de cabeça')
-        cy.get('#intensidade').select('Moderada')
-        cy.get('#area').type('cabeça')
-        cy.get('#medicamento').type('dorflex')
-        cy.get('#medico').type('nao me consultei com nenhum medico')
-        cy.get('[action="/saude/"] > [type="submit"]').click()
+        cy.get('[href="/saude/"]').click();
+        cy.get('#sintoma').type('dor de cabeça');
+        cy.get('#intensidade').select('Moderada');
+        cy.get('#area').type('cabeça');
+        cy.get('#medicamento').type('dorflex');
+        cy.get('#medico').type('nao me consultei com nenhum medico');
+        cy.get('[action="/saude/"] > [type="submit"]').click();
+    });
+    it('Visualizar registro de saude com sucesso', () => {
+        cy.get('[href="/saude/"]').click();
+        cy.get('.botao').click();
     });
 });
