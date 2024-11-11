@@ -221,6 +221,54 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 
 <details>
 <summary>📧 Entrega 4</summary>
+  
+  ### 📄 Jira Quadro Sprint 4 
+
+  <img src="https://github.com/user-attachments/assets/8e89592b-bbc4-4e15-b7ce-414850fe2a11" alt="Repository Size">
+  <br>
+  
+  ### 📄 Jira Backlog
+
+  <img src="https://github.com/user-attachments/assets/bf2295b1-2d28-4bf7-9faf-2c0628c69af3" alt="Repository Size">
+  <br>
+  
+  ### 🎥 Screencast do protótipo
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/P9qAy3DhcSQ" style="text-decoration: none;">
+    <span>🔗 Screencast do FIGMA</span>
+  </a>
+</p>
+
+<br>
+  
+  ### 📄 Prototipação Lo-Fi
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://www.figma.com/design/Vo7Jd6HeI0TCrXF3rnj5kF/FORTIS?node-id=0-1&t=AL28ZR4ofulLp0Oe-1" style="text-decoration: none;">
+    <span>🔗 Figma</span>
+  </a>
+</p>
+
+<br>
+
+### 🎥 Screencast
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/-xKDAoRQAHs" style="text-decoration: none;">
+    <span>🔗 Screencast com ênfase nas novas histórias</span>
+  </a>
+</p>
+
+<br>
+
+### Link da Azure
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="http://fortisapp.azurewebsites.net/" style="text-decoration: none;">
+    <span>🔗 Link </span>
+  </a>
+</p>
 </details>
 
 
