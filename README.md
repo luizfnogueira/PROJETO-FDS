@@ -236,6 +236,18 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 </p>
 
 <br>
+
+### 🎥 Screencast dos testes automatizados
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://www.youtube.com/watch?v=L4P0oqA6QaA" style="text-decoration: none;">
+    <span>🔗 Screencast no cypress</span>
+  </a>
+</p>
+  
+<br>
+
+<br>
   
   ### 📄 Prototipação Lo-Fi
 
