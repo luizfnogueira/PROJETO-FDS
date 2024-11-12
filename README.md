@@ -294,6 +294,16 @@ Marina Hoffmann Guimarães - mhg@cesar.school
     <span>🔗 Link </span>
   </a>
 </p>
+<br>
+
+### Link dos Slides da apresentação final 
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://www.canva.com/design/DAGWKeAXP1I/-c5E1-tZIMsOjOxeowEvnw/edit?utm_content=DAGWKeAXP1I&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" style="text-decoration: none;">
+    <span>🔗 Link </span>
+  </a>
+</p>
+
 </details>
 
 
