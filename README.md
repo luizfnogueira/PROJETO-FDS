@@ -227,6 +227,14 @@ Marina Hoffmann Guimarães - mhg@cesar.school
   <img src="https://github.com/user-attachments/assets/bf2295b1-2d28-4bf7-9faf-2c0628c69af3" alt="Repository Size">
   <br>
   
+  ### Print do Bug Tracker
+
+  <img src="https://github.com/user-attachments/assets/5b12d574-6a6d-4e91-bd81-733b6426cf13" alt="Repository Size">
+  <br>
+
+  <img src="https://github.com/user-attachments/assets/d3b28375-9fde-490e-90ea-8f89ca244a79" alt="Repository Size">
+  <br>
+  
   ### 🎥 Screencast do protótipo
 
 <p style="text-align: center; text-decoration: none;">
@@ -269,7 +277,7 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 
 <br>
 
-### 🎥 SCREENCAST CI/CD
+### 🎥 Screencast CI/CD
 
 <p style="text-align: center; text-decoration: none;">
   <a href="https://youtu.be/r3m4hu3JXBU?si=Qd-2Ec-tlmQKAXVX" style="text-decoration: none;">
