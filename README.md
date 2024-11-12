@@ -262,7 +262,17 @@ Marina Hoffmann Guimarães - mhg@cesar.school
 ### 🎥 Screencast
 
 <p style="text-align: center; text-decoration: none;">
-  <a href="https://youtu.be/-xKDAoRQAHs" style="text-decoration: none;">
+  <a href="https://youtu.be/JJ0E1QfUM5c?si=vEmuOpb5vholrNHn" style="text-decoration: none;">
+    <span>🔗 Screencast com ênfase nas novas histórias</span>
+  </a>
+</p>
+
+<br>
+
+### 🎥 SCREENCAST CI/CD
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/r3m4hu3JXBU?si=Qd-2Ec-tlmQKAXVX" style="text-decoration: none;">
     <span>🔗 Screencast com ênfase nas novas histórias</span>
   </a>
 </p>
